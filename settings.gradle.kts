@@ -22,4 +22,4 @@ rootProject.name = "brawlstars-api"
 
 includeBuild("build-conventions")
 
-include(":core")
+include(":core", ":brawlify")

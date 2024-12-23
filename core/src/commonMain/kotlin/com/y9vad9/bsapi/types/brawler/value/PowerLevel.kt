@@ -12,7 +12,7 @@ public value class PowerLevel private constructor(private val value: Int) : Comp
         public val VALUE_RANGE: IntRange = 1..12
 
         override fun create(value: Int): Result<PowerLevel> {
-            if (value !in VALUE_RANGE) return Result.failure(CreationFailure.ofSizeRange(VALUE_RANGE))
+            if (value !in VALUE_RANGE) return Result.failure(CreationFailure.ofRange(VALUE_RANGE))
             return Result.success(PowerLevel(value))
         }
     }

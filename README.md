@@ -9,7 +9,7 @@ value classes, predefined constraints, and utility functions to improve integrat
 - **Kotlin-first:** Made with love using Kotlin Coroutines for the best experience.
 - **Type-Safe:** Ensures no raw types are exposed. Instead, all values are encapsulated in validated value classes with
   constraints, constants, and utility methods.
-- **Integration**: Provides separate module to work with public Brawlify API.
+- **Integration-friendly**: Provides separate module to work with public Brawlify API.
 - **Up to date:** Provides actual API with all available for now methods.
 
 ## Installation
@@ -91,19 +91,14 @@ The library internally uses:
 - **Kotlinx.Coroutines**: For asynchronous operations.
 - **Kotlinx.DateTime**: For handling date/time in API responses.
 
----
-
 ## Contributing
 
 Contributions are welcome! Please create a pull request or open an issue to suggest improvements or report bugs.
-
----
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
 
-_______
 *This product is not affiliated with, endorsed, sponsored, or specifically approved by Supercell and Supercell is not
 responsible for it.
 For more information see [Supercell’s Fan Content Policy](https://supercell.com/en/fan-content-policy/).*

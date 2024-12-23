@@ -14,7 +14,7 @@ public value class BrawlerRank private constructor(public val raw: Int) : Compar
         public val MAX: BrawlerRank = BrawlerRank(51)
 
         override fun create(value: Int): Result<BrawlerRank> {
-            if (value !in VALUE_RANGE) return Result.failure(CreationFailure.ofSizeRange(VALUE_RANGE))
+            if (value !in VALUE_RANGE) return Result.failure(CreationFailure.ofRange(VALUE_RANGE))
             return Result.success(BrawlerRank(value))
         }
     }

@@ -13,7 +13,7 @@ public value class PlayerName private constructor(public val raw: String) {
         override fun create(value: String): Result<PlayerName> {
             return when (value.length) {
                 in SIZE_RANGE -> Result.success(PlayerName(value))
-                else -> Result.failure(CreationFailure.ofSizeRange(SIZE_RANGE))
+                else -> Result.failure(CreationFailure.ofRange(SIZE_RANGE))
             }
         }
     }

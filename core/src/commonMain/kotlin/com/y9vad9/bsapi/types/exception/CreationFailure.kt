@@ -12,8 +12,8 @@ public sealed class CreationFailure(message: String) : Exception(message) {
     /**
      * Represents a creation failure due to a size range constraint.
      */
-    public data class SizeRangeFailure(public val range: IntRange) :
-        CreationFailure("Constraint failure: size must be in range of $range")
+    public data class RangeFailure(public val range: ClosedRange<*>) :
+        CreationFailure("Constraint failure: size/value must be in range of $range")
 
     /**
      * Represents a creation failure due to an exact size constraint.
@@ -40,13 +40,13 @@ public sealed class CreationFailure(message: String) : Exception(message) {
 
     public companion object {
         /**
-         * Creates a [SizeRangeFailure] object with a size constraint failure message.
+         * Creates a [RangeFailure] object with a size constraint failure message.
          *
          * @param size The size range constraint for the creation failure.
-         * @return The [SizeRangeFailure] object with the specified size constraint failure message.
+         * @return The [RangeFailure] object with the specified size constraint failure message.
          */
-        public fun ofSizeRange(size: IntRange): CreationFailure {
-            return SizeRangeFailure(size)
+        public fun ofRange(size: ClosedRange<*>): CreationFailure {
+            return RangeFailure(size)
         }
 
         /**
