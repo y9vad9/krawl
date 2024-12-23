@@ -8,13 +8,13 @@ public enum class PlayerRole {
     @SerialName("president")
     PRESIDENT,
 
-    @SerialName("not_member")
+    @SerialName("notMember")
     NOT_MEMBER,
 
     @SerialName("member")
     MEMBER,
 
-    @SerialName("vice_president")
+    @SerialName("vicePresident")
     VICE_PRESIDENT,
 
     @SerialName("senior")

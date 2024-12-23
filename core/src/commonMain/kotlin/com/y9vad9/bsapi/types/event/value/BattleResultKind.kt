@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public enum class BattleResult {
+public enum class BattleResultKind {
     @SerialName("victory")
     VICTORY,
 

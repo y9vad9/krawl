@@ -77,10 +77,10 @@ public class BrawlStarsClient(
      * @return [Result] containing a list of [Battle] objects if successful, or null if the player was not found.
      */
     public suspend fun getPlayerBattlelog(tag: PlayerTag): Result<List<Battle>?> =
-        getRequest<GetBattleListResponse>(
-            typeInfo<GetBattleListResponse>(),
+        getRequest<ItemsResponse<Battle>>(
+            typeInfo<ItemsResponse<Battle>>(),
             "players/${tag.toString().replace("#", "%23")}/battlelog"
-        ).map { it?.battles }
+        ).map { it?.items }
 
     /**
      * Retrieves information about a club.
@@ -100,10 +100,10 @@ public class BrawlStarsClient(
      * @param tag The unique club tag (e.g., #CLUB_TAG).
      * @return [Result] containing a [ClubMember] object if successful, or null if the club was not found.
      */
-    public suspend fun getClubMembers(tag: ClubTag): Result<List<ClubMember>> = getRequest<List<ClubMember>>(
-        typeInfo = typeInfo<List<ClubMember>>(),
+    public suspend fun getClubMembers(tag: ClubTag): Result<List<ClubMember>> = getRequest<ItemsResponse<ClubMember>>(
+        typeInfo = typeInfo<ItemsResponse<ClubMember>>(),
         url = "clubs/${tag.toString().replace("#", "%23")}/members"
-    ).map { it!! }
+    ).map { it!!.items }
 
     /**
      * Provides a lazy iterator for paginated retrieval of club members.
@@ -129,8 +129,8 @@ public class BrawlStarsClient(
      * @return [Result] containing a list of [BrawlerView] objects.
      */
     public suspend fun getBrawlers(): Result<List<Brawler.View>> {
-        return getRequest<Page<Brawler.View>>(typeInfo<Page<Brawler.View>>(), "v1/brawlers")
-            .map { it!!.items!! } // no kaboom expected: API should never return 404
+        return getRequest<ItemsResponse<Brawler.View>>(typeInfo<ItemsResponse<Brawler.View>>(), "brawlers")
+            .map { it!!.items } // no kaboom expected: API should never return 404
     }
 
     /**
@@ -140,7 +140,7 @@ public class BrawlStarsClient(
      * @return [Result] containing the [BrawlerView] object if successful, or null if the brawler was not found.
      */
     public suspend fun getBrawler(id: BrawlerId): Result<Brawler.View?> {
-        return getRequest<Brawler.View>(typeInfo<Page<Brawler.View>>(), "brawlers/${id.value}")
+        return getRequest<Brawler.View>(typeInfo<Brawler.View>(), "brawlers/${id.value}")
     }
 
     /**
@@ -162,10 +162,10 @@ public class BrawlStarsClient(
      * @return [Result] containing a list of [Club.Ranking] objects if successful.
      */
     public suspend fun getClubsRankings(countryCode: CountryCode = CountryCode.GLOBAL): Result<List<Club.Ranking>> {
-        return getRequest<List<Club.Ranking>>(
-            typeInfo = typeInfo<List<Club.Ranking>>(),
+        return getRequest<ItemsResponse<Club.Ranking>>(
+            typeInfo = typeInfo<ItemsResponse<Club.Ranking>>(),
             url = "rankings/${countryCode.value}/clubs",
-        ).map { it!! }
+        ).map { it!!.items }
     }
 
     /**
@@ -196,10 +196,10 @@ public class BrawlStarsClient(
      * @return [Result] containing a list of [Player.Ranking] objects if successful.
      */
     public suspend fun getPlayersRankings(countryCode: CountryCode = CountryCode.GLOBAL): Result<List<Player.Ranking>> {
-        return getRequest<List<Player.Ranking>>(
-            typeInfo = typeInfo<List<Player.Ranking>>(),
+        return getRequest<ItemsResponse<Player.Ranking>>(
+            typeInfo = typeInfo<ItemsResponse<Player.Ranking>>(),
             url = "rankings/${countryCode.value}/players",
-        ).map { it!! }
+        ).map { it!!.items }
     }
 
     /**
@@ -213,7 +213,7 @@ public class BrawlStarsClient(
         countryCode: CountryCode = CountryCode.GLOBAL,
         limit: Count,
     ): PagesIterator<Player.Ranking> {
-        return PagesIterator<Player.Ranking>(limit) { count, cursors ->
+        return PagesIterator(limit) { count, cursors ->
             getRequestListWithPagination(
                 typeInfo = typeInfo<List<Player.Ranking>>(),
                 url = "rankings/${countryCode.value}/players",
@@ -235,10 +235,10 @@ public class BrawlStarsClient(
         countryCode: CountryCode = CountryCode.GLOBAL,
         brawlerId: BrawlerId,
     ): Result<List<Brawler.Ranking>> {
-        return getRequest<List<Brawler.Ranking>>(
-            typeInfo = typeInfo<List<Brawler.Ranking>>(),
+        return getRequest<ItemsResponse<Brawler.Ranking>>(
+            typeInfo = typeInfo<ItemsResponse<Brawler.Ranking>>(),
             url = "rankings/${countryCode.value}/brawlers/${brawlerId.value}",
-        ).map { it!! }
+        ).map { it!!.items }
     }
 
     /**
@@ -255,7 +255,7 @@ public class BrawlStarsClient(
         brawlerId: BrawlerId,
         limit: Count,
     ): PagesIterator<Brawler.Ranking> {
-        return PagesIterator<Brawler.Ranking>(limit) { count, cursors ->
+        return PagesIterator(limit) { count, cursors ->
             getRequestListWithPagination(
                 typeInfo = typeInfo<List<Brawler.Ranking>>(),
                 url = "rankings/${countryCode.value}/brawlers/${brawlerId.value}",
@@ -314,7 +314,7 @@ public class BrawlStarsClient(
         }
 
     @Serializable
-    private data class GetBattleListResponse(
-        val battles: List<Battle>,
+    private data class ItemsResponse<T>(
+        val items: List<T>,
     )
 }
