@@ -7,11 +7,11 @@ import com.y9vad9.brawlifyapi.types.events.BrawlifyGameMode
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyUrl
 import com.y9vad9.brawlifyapi.types.maps.value.BrawlifyEnvironmentId
 import com.y9vad9.brawlifyapi.types.maps.value.BrawlifyEnvironmentName
-import com.y9vad9.brawlifyapi.types.maps.value.BrawlifyMapId
 import com.y9vad9.bsapi.types.event.value.EventId
 import com.y9vad9.bsapi.types.event.value.MapName
 import com.y9vad9.bsapi.types.player.value.PlayerName
 import kotlinx.datetime.Instant
+
 import kotlinx.serialization.Serializable
 
 @Serializable

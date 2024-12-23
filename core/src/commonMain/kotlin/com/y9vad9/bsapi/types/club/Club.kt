@@ -1,5 +1,6 @@
 package com.y9vad9.bsapi.types.club
 
+import com.y9vad9.bsapi.types.club.value.ClubBadgeId
 import com.y9vad9.bsapi.types.club.value.ClubName
 import com.y9vad9.bsapi.types.club.value.ClubTag
 import com.y9vad9.bsapi.types.club.value.ClubType
@@ -13,6 +14,7 @@ public data class Club(
     val name: ClubName,
     val description: String,
     val requiredTrophies: Trophies,
+    val badgeId: ClubBadgeId,
     val trophies: Trophies,
     val type: ClubType,
     val members: List<ClubMember>,

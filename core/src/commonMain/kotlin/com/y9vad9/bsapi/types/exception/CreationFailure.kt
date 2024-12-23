@@ -38,6 +38,10 @@ public sealed class CreationFailure(message: String) : Exception(message) {
     public data class PatternFailure(public val regex: Regex) :
         CreationFailure("Constraint failure: input should match $regex")
 
+    public data class DoesNotAcceptSuchValueFailure(
+        public val accepts: List<Any>
+    ) : CreationFailure("Constraint failure: accepts only $accepts")
+
     public companion object {
         /**
          * Creates a [RangeFailure] object with a size constraint failure message.
@@ -86,6 +90,10 @@ public sealed class CreationFailure(message: String) : Exception(message) {
          */
         public fun ofPattern(regex: Regex): CreationFailure {
             return PatternFailure(regex)
+        }
+
+        public fun acceptsOnly(values: List<Any>): CreationFailure {
+            return DoesNotAcceptSuchValueFailure(values)
         }
     }
 }

@@ -100,6 +100,7 @@ public value class BrawlerId private constructor(public val value: Int) : Compar
         public val SHADE: BrawlerId = BrawlerId(16000086)
         public val JUJU: BrawlerId = BrawlerId(16000087)
         public val MEEPLE: BrawlerId = BrawlerId(16000089)
+        public val OLLIE: BrawlerId = BrawlerId(16000090)
 
         override fun create(value: Int): Result<BrawlerId> {
             if (value < 16000000)

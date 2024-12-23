@@ -1,6 +1,10 @@
 package com.y9vad9.brawlifyapi
 
 import com.y9vad9.brawlifyapi.types.events.BrawlifyEvent
+import com.y9vad9.brawlifyapi.types.events.BrawlifyFullGameMode
+import com.y9vad9.brawlifyapi.types.events.value.BrawlifyGameModeId
+import com.y9vad9.brawlifyapi.types.icons.BrawlifyClubIcon
+import com.y9vad9.brawlifyapi.types.icons.BrawlifyPlayerIcon
 import com.y9vad9.brawlifyapi.types.maps.BrawlifyMap
 import com.y9vad9.bsapi.types.event.value.EventId
 import io.ktor.client.*
@@ -32,16 +36,73 @@ public class BrawlifyClient(
         configBlock()
     }
 
+    /**
+     * Gets available on Brawlify information about current and upcoming events.
+     *
+     * [API Documentation](https://brawlapi.com/#/endpoints/events)
+     */
     public suspend fun getEvents(): Result<GetEventsResponse> = runCatching {
-        client.get("events").body()
+        client.get("events").body<GetEventsResponse>()
     }
 
-    public suspend fun getMaps(): Result<GetMapsResponse> = runCatching {
-        client.get("maps").body()
+    /**
+     * Gets available on Brawlify information about maps.
+     *
+     * [API Documentation](https://brawlapi.com/#/endpoints/maps)
+     */
+    public suspend fun getMaps(): Result<List<BrawlifyMap>> = runCatching {
+        client.get("maps").body<GetMapsResponse>().list
     }
 
-    public suspend fun getMap(eventId: EventId): Result<GetMapsResponse> = runCatching {
-        client.get("maps/${eventId.raw}").body()
+    /**
+     * Gets map by [eventId] from Brawl Stars API (or from Brawlify's [getEvents]).
+     *
+     * @param eventId Event's id within Brawl Stars system.
+     *
+     * [API Documentation](https://brawlapi.com/#/endpoints/maps)
+     */
+    public suspend fun getMap(eventId: EventId): Result<BrawlifyMap?> = runCatching {
+        val result = client.get("maps/${eventId.raw}")
+
+        when (result.status) {
+            HttpStatusCode.NotFound -> null
+            else -> result.body()
+        }
+    }
+
+    /**
+     * Gets available on Brawlify icons for players / clubs.
+     *
+     * [API Documentation](https://brawlapi.com/#/endpoints/icons)
+     */
+    public suspend fun getIcons(): Result<GetIconsResponse> = runCatching {
+        client.get("icons").body<GetIconsResponse>()
+    }
+
+    /**
+     * Gets available on Brawlify game modes list with all information.
+     *
+     * [API Documentation](https://brawlapi.com/#/endpoints/gamemodes)
+     */
+    public suspend fun getGameModes(): Result<List<BrawlifyFullGameMode>> = runCatching {
+        client.get("gamemodes").body<GetGameModesResponse>().list
+    }
+
+    /**
+     * Gets game mode on Brawlify if available or null.
+     *
+     * @param id Brawlify specific id linked to the game mode. Can be
+     * retrieved in [getEvents] or [getMaps].
+     *
+     * [API Documentation](https://brawlapi.com/#/endpoints/gamemodes)
+     */
+    public suspend fun getGameMode(id: BrawlifyGameModeId): Result<BrawlifyFullGameMode?> = runCatching {
+        val result = client.get("gamemodes/${id.raw}")
+
+        when (result.status) {
+            HttpStatusCode.NotFound -> null
+            else -> result.body<BrawlifyFullGameMode>()
+        }
     }
 
     @Serializable
@@ -51,7 +112,21 @@ public class BrawlifyClient(
     )
 
     @Serializable
-    public data class GetMapsResponse(
+    private data class GetMapsResponse(
         val list: List<BrawlifyMap>,
     )
+
+    @Serializable
+    private data class GetGameModesResponse(
+        val list: List<BrawlifyFullGameMode>,
+    )
+
+    @Serializable
+    public data class GetIconsResponse(
+        private val player: List<Map<String, BrawlifyPlayerIcon>>,
+        private val clubs: List<Map<String, BrawlifyClubIcon>>,
+    ) {
+        public val playersIcons: List<BrawlifyPlayerIcon> by lazy { player.flatMap { it.values } }
+        public val clubsIcons: List<BrawlifyClubIcon> by lazy { clubs.flatMap { it.values } }
+    }
 }
