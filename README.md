@@ -8,11 +8,17 @@ Designed for developers who need reliable data handling, it offers type-safe int
 - **Official Brawl Stars API Client**: Supports [official Brawl Stars API](https://developer.brawlstars.com/#/documentation).
 - **Brawlify API Client**: Supports [Brawlify API](https://brawlapi.com/#/) with type-safe integration with official Brawl Stars API.
 
+Supports two targets: Kotlin/JVM and Kotlin/JS; other will be available [upon request](https://github.com/y9vad9/brawlstars-api/issues/new).
+
 ## Installation
 
 Add the following dependency to your `build.gradle.kts`:
 
 ```kotlin
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     // official BS API
     implementation("com.y9vad9.bsapi:core:$version")
