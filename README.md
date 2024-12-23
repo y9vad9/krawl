@@ -1,16 +1,12 @@
 # Brawl Stars API
 
-This library provides a robust and type-safe way to interact with the Brawl Stars API.
-Designed for developers who need reliable data handling, it offers features such as validated
-value classes, predefined constraints, and utility functions to improve integration and reduce errors.
+This library provides a robust and type-safe way to interact with the official Brawl Stars and Brawlify APIs.
+Designed for developers who need reliable data handling, it offers type-safe inter-usable types, predefined constraints, and utility functions to improve integration and reduce errors.
 
 ### Features:
 
-- **Kotlin-first:** Made with love using Kotlin Coroutines for the best experience.
-- **Type-Safe:** Ensures no raw types are exposed. Instead, all values are encapsulated in validated value classes with
-  constraints, constants, and utility methods.
-- **Integration-friendly**: Provides separate module to work with public Brawlify API.
-- **Up to date:** Provides actual API with all available for now methods.
+- **Official Brawl Stars API Client**: Supports [official Brawl Stars API](https://developer.brawlstars.com/#/documentation).
+- **Brawlify API Client**: Supports [Brawlify API](https://brawlapi.com/#/) with type-safe integration with official Brawl Stars API.
 
 ## Installation
 
@@ -18,7 +14,10 @@ Add the following dependency to your `build.gradle.kts`:
 
 ```kotlin
 dependencies {
+    // official BS API
     implementation("com.y9vad9.bsapi:core:$version")
+    // Brawlify API
+    implementation("com.y9vad9.bsapi:brawlify:$version")
 }
 ```
 
