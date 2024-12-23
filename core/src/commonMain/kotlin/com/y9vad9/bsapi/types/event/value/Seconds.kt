@@ -2,6 +2,7 @@ package com.y9vad9.bsapi.types.event.value
 
 import com.y9vad9.bsapi.types.ValueConstructor
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 

@@ -4,6 +4,7 @@ import com.y9vad9.bsapi.types.ValueConstructor
 import com.y9vad9.bsapi.types.brawler.value.BrawlerId.Companion
 import com.y9vad9.bsapi.types.exception.CreationFailure
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 /**
  * Brawler's unique identifier. For predefined constants, please refer to [Companion].

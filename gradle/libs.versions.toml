@@ -70,6 +70,7 @@ accompanist-systemUiController = { module = "com.google.accompanist:accompanist-
 
 # Plugin classpaths
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+vanniktech-maven-publish = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.require = "0.30.0" }
 
 [plugins]
 # Build Conventions

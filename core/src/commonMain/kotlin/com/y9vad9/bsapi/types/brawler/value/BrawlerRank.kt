@@ -3,6 +3,7 @@ package com.y9vad9.bsapi.types.brawler.value
 import com.y9vad9.bsapi.types.ValueConstructor
 import com.y9vad9.bsapi.types.exception.CreationFailure
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 @Serializable
 @JvmInline

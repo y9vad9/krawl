@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
 }
 
+group = "com.y9vad9.bsapi"
+
 dependencies {
     // -- Project --
     commonMainApi(projects.core)
@@ -16,4 +18,17 @@ dependencies {
     commonMainApi(libs.kotlinx.serialization)
     commonMainApi(libs.kotlinx.datetime)
     commonMainApi(libs.kotlinx.coroutines)
+}
+
+mavenPublishing {
+    coordinates(
+        groupId = "com.y9vad9.bsapi",
+        artifactId = "brawlify",
+        version = System.getenv("LIB_VERSION") ?: return@mavenPublishing,
+    )
+
+    pom {
+        name.set("Brawlify API Client Library")
+        description.set("Type-safe library for accessing Brawlify API.")
+    }
 }

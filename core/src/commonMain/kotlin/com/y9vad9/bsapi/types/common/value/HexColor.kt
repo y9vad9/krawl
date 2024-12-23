@@ -3,6 +3,7 @@ package com.y9vad9.bsapi.types.common.value
 import com.y9vad9.bsapi.types.ValueConstructor
 import com.y9vad9.bsapi.types.exception.CreationFailure
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 /**
  * Hex color. Accepts both literal values (0x) and with hashtag (#..).

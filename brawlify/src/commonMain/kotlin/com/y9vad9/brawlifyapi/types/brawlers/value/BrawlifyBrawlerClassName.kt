@@ -2,6 +2,7 @@ package com.y9vad9.brawlifyapi.types.brawlers.value
 
 import com.y9vad9.bsapi.types.ValueConstructor
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 @Serializable
 @JvmInline

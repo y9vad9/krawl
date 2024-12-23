@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
 }
 
+group = "com.y9vad9.bsapi"
+
 dependencies {
     // -- Ktor Client (HTTP) --
     commonMainApi(libs.ktor.client.core)
@@ -13,4 +15,17 @@ dependencies {
     commonMainApi(libs.kotlinx.serialization)
     commonMainApi(libs.kotlinx.datetime)
     commonMainApi(libs.kotlinx.coroutines)
+}
+
+mavenPublishing {
+    coordinates(
+        groupId = "com.y9vad9.bsapi",
+        artifactId = "core",
+        version = System.getenv("LIB_VERSION") ?: return@mavenPublishing,
+    )
+
+    pom {
+        name.set("Brawl Stars Official API Client Library")
+        description.set("Type-safe library for accessing Official Brawl Stars API.")
+    }
 }

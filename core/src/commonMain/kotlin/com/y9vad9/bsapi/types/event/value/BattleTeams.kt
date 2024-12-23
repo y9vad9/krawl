@@ -5,6 +5,7 @@ import com.y9vad9.bsapi.types.event.Battle
 import com.y9vad9.bsapi.types.exception.CreationFailure
 import com.y9vad9.bsapi.types.player.value.PlayerTag
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 @Serializable
 @JvmInline
