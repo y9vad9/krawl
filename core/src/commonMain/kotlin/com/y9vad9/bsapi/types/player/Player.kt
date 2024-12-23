@@ -6,6 +6,7 @@ import com.y9vad9.bsapi.types.club.Club
 import com.y9vad9.bsapi.types.club.ClubMember
 import com.y9vad9.bsapi.types.club.value.PlayerRole
 import com.y9vad9.bsapi.types.common.value.Count
+import com.y9vad9.bsapi.types.common.value.HexColor
 import com.y9vad9.bsapi.types.event.value.RankingPosition
 import com.y9vad9.bsapi.types.event.value.Trophies
 import com.y9vad9.bsapi.types.player.value.PlayerName
@@ -17,6 +18,7 @@ import kotlinx.serialization.Serializable
 public data class Player(
     val tag: PlayerTag,
     val name: PlayerName,
+    val nameColor: HexColor,
     val icon: PlayerIcon,
     val trophies: Trophies,
     val highestTrophies: Trophies,
@@ -50,5 +52,6 @@ public fun Player.toClubMember(): ClubMember {
         role = PlayerRole.UNKNOWN,
         trophies = trophies,
         icon = icon,
+        nameColor = nameColor,
     )
 }
