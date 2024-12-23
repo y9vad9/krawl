@@ -1,6 +1,7 @@
 package com.y9vad9.brawlifyapi.types.events
 
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyEventEmoji
+import com.y9vad9.brawlifyapi.types.events.value.BrawlifyEventName
 import com.y9vad9.brawlifyapi.types.maps.BrawlifyMap
 import com.y9vad9.bsapi.types.event.value.EventId
 import com.y9vad9.bsapi.types.event.value.EventSlotId
@@ -18,10 +19,10 @@ public data class BrawlifyEvent(
     @Serializable
     public data class Slot(
         val id: EventSlotId,
-        val name: EventId,
+        val name: BrawlifyEventName,
         val emoji: BrawlifyEventEmoji,
         val listAlone: Boolean,
         val hideable: Boolean,
-        val hideForSlot: EventSlotId,
+        val hideForSlot: EventSlotId? = null,
     )
 }

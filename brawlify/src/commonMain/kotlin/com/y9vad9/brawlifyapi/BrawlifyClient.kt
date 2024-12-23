@@ -123,10 +123,10 @@ public class BrawlifyClient(
 
     @Serializable
     public data class GetIconsResponse(
-        private val player: List<Map<String, BrawlifyPlayerIcon>>,
-        private val clubs: List<Map<String, BrawlifyClubIcon>>,
+        private val player: Map<String, BrawlifyPlayerIcon>,
+        private val club: Map<String, BrawlifyClubIcon>,
     ) {
-        public val playersIcons: List<BrawlifyPlayerIcon> by lazy { player.flatMap { it.values } }
-        public val clubsIcons: List<BrawlifyClubIcon> by lazy { clubs.flatMap { it.values } }
+        public val playersIcons: List<BrawlifyPlayerIcon> by lazy { player.map { it.value } }
+        public val clubsIcons: List<BrawlifyClubIcon> by lazy { club.map { it.value } }
     }
 }

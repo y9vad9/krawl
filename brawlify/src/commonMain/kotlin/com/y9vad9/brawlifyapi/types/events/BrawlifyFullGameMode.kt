@@ -1,10 +1,7 @@
 package com.y9vad9.brawlifyapi.types.events
 
-import com.y9vad9.brawlifyapi.types.common.value.BrawlifyDescription
-import com.y9vad9.brawlifyapi.types.common.value.BrawlifyHash
-import com.y9vad9.brawlifyapi.types.common.value.BrawlifyTitle
+import com.y9vad9.brawlifyapi.types.common.value.*
 import com.y9vad9.bsapi.types.common.value.HexColor
-import com.y9vad9.brawlifyapi.types.common.value.BrawlifyVersion
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyGameModeId
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyGameModeName
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyUrl
@@ -13,8 +10,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public data class BrawlifyFullGameMode(
-    val id: BrawlifyGameModeId,
-    val scId: BrawlifyHash,
+    val id: BrawlifyGameModeId? = null,
+    val scId: BrawlifyScId,
     val name: BrawlifyGameModeName,
     val hash: BrawlifyHash,
     val scHash: BrawlifyHash,

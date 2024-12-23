@@ -18,6 +18,12 @@ dependencies {
     commonMainApi(libs.kotlinx.serialization)
     commonMainApi(libs.kotlinx.datetime)
     commonMainApi(libs.kotlinx.coroutines)
+
+
+    // -- Tests --
+    commonTestImplementation(libs.kotlin.test)
+    jvmTestImplementation(libs.ktor.client.java)
+    commonTestImplementation(libs.kotlinx.coroutines.test)
 }
 
 mavenPublishing {

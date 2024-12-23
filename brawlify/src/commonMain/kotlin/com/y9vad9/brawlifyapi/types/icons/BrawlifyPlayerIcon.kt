@@ -14,7 +14,7 @@ public data class BrawlifyPlayerIcon(
     val name2: BrawlifyHash,
     val imageUrl: BrawlifyUrl,
     val imageUrl2: BrawlifyUrl,
-    val brawler: BrawlerId,
+    val brawler: BrawlerId?,
     val requiredTotalTrophies: Trophies,
     val isReward: Boolean,
     val isAvailableForOffers: Boolean,

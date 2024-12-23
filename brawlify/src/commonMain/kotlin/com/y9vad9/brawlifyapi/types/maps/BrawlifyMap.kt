@@ -35,7 +35,7 @@ public data class BrawlifyMap(
     @Serializable(with = InstantFromUnixMillisecondsSerializer::class)
     val dataUpdated: Instant,
     @Serializable(with = InstantFromUnixMillisecondsSerializer::class)
-    val lastActive: Instant,
+    val lastActive: Instant?,
 ) {
     @Serializable
     public data class Environment(
