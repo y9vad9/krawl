@@ -1,28 +1,109 @@
-# <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/2048px-Kotlin_Icon_2021.svg.png" width=24 height=24 /> Kotlin Project Template
-Project Template for convenient project setup using [convention plugins](https://docs.gradle.org/current/samples/sample_convention_plugins.html#compiling_convention_plugins)
-and [version catalogs](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog).
+# Brawl Stars API
 
-## Motivation
-Every time I create a new project, I do a lot of routine work, so this repository should decrease amount of this work.
+This library provides a robust and type-safe way to interact with the Brawl Stars API.
+Designed for developers who need reliable data handling, it offers features such as validated
+value classes, predefined constraints, and utility functions to improve integration and reduce errors.
 
-## Initializing
-- `settings.gradle.kts`: Set your root project name
-- `gradle/libs.versions.toml`: Add your dependencies
+### Features:
 
-> **Note** <br>
-> [TYPESAFE_PROJECT_ACCESSORS](https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:type-safe-project-accessors)
-> are enabled by default. If you don't need this feature, remove it from `settings.gradle.kts`.
+- **Kotlin-first:** Made with love using Kotlin Coroutines for the best experience.
+- **Type-Safe:** Ensures no raw types are exposed. Instead, all values are encapsulated in validated value classes with
+  constraints, constants, and utility methods.
+- **Integration**: Provides separate module to work with public Brawlify API.
+- **Up to date:** Provides actual API with all available for now methods.
 
-## Builtins
-### Build conventions
-This template also provides some useful [build conventions](build-conventions/src/main/kotlin).
+## Installation
 
-#### How to use
-Example of `build.gradle.kts` usage:
+Add the following dependency to your `build.gradle.kts`:
+
 ```kotlin
-plugins {
-    id(libs.plugins.conventions.jvm.get().pluginId)
-    // or
-    id("jvm-convention")
+dependencies {
+    implementation("com.y9vad9.bsapi:core:$version")
 }
 ```
+
+## Usage
+
+### Fetching Player Data
+
+1. **Define your client:**
+
+   Use the library’s prebuilt API client to interact with endpoints:
+
+   ```kotlin
+   val client = BrawlStarsClient(apiKey = "your-api-key", engine = CIO)
+   ```
+   Regarding `engine` parameter, please refer to
+   the [Ktor Documentation on client engines](https://ktor.io/docs/client-engines.html).
+
+2. **Fetch player details:**
+
+   ```kotlin
+   // error-proof way of passing player's tag, to avoid,
+   // for example, unnecessary API calls and validation on your side:
+   val playerTag: PlayerTag = PlayerTag.createOr("9V8LCUC0G") { // accepts both with hashtag and without
+       error("Invalid player tag!")
+   }
+   val player = client.getPlayer(playerTag)
+   player.onSuccess {
+       println("Player Name: ${it.name}, Trophies: ${it.trophies}")
+   }.onFailure {
+       println("Error fetching player: ${it.message}")
+   }
+   ```
+   Library enforces type safety with validated value classes. For
+   the reference, take a look
+   at [PlayerTag](core/src/commonMain/kotlin/com/y9vad9/bsapi/types/player/value/PlayerTag.kt).
+
+### Fetching Battle Data
+
+1. **Retrieve battle logs:**
+
+   ```kotlin
+   // if you're sure about input tag, you can use unsafe-way 
+   // of institating
+   val playerTag: PlayerTag = PlayerTag.createUnsafe("9V8LCUC0G")
+   
+   val battles = client.getBattleLogs(playerTag)
+   battles.onSuccess {
+       it.forEach { battle ->
+           if (battle.type.isRankedGameMode) {
+              println("This is ranked game mode!")
+              val stage = battle.getRankedStage(playerTag)
+  
+              if (stage >= RankedStage.DIAMOND_ONE)
+                print("In this match was picking stage.")
+           }
+   
+           println("Battle Mode: ${battle.mode}, Result: ${battle.result}")
+       }
+   }.onFailure {
+       println("Error fetching battles: ${it.message}")
+   }
+   ```
+
+## Dependencies
+
+The library internally uses:
+
+- **Ktor Client**: For HTTP requests.
+- **Kotlinx.Serialization**: For JSON parsing.
+- **Kotlinx.Coroutines**: For asynchronous operations.
+- **Kotlinx.DateTime**: For handling date/time in API responses.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please create a pull request or open an issue to suggest improvements or report bugs.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+_______
+*This product is not affiliated with, endorsed, sponsored, or specifically approved by Supercell and Supercell is not
+responsible for it.
+For more information see [Supercell’s Fan Content Policy](https://supercell.com/en/fan-content-policy/).*

@@ -18,6 +18,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "kotlin-project-template"
+rootProject.name = "brawlstars-api"
 
 includeBuild("build-conventions")
+
+include(":core")
