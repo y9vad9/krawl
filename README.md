@@ -104,6 +104,7 @@ Contributions are welcome! Please create a pull request or open an issue to sugg
 
 This project is licensed under the [MIT License](LICENSE).
 
+# Notice
 *This product is not affiliated with, endorsed, sponsored, or specifically approved by Supercell and Supercell is not
 responsible for it.
 For more information see [Supercell’s Fan Content Policy](https://supercell.com/en/fan-content-policy/).*
