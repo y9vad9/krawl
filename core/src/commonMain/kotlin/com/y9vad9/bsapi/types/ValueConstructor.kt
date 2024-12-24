@@ -31,9 +31,11 @@ public interface ValueConstructor<Type, WrappedType> {
 
 public inline fun <T, W> ValueConstructor<T, W>.createOr(
     value: W,
-    otherwise: (Throwable) -> T,
+    otherwise: (CreationFailure) -> T,
 ): T {
-    return create(value).getOrElse(otherwise)
+    return create(value).getOrElse {
+        otherwise(it as CreationFailure)
+    }
 }
 
 public fun <T, W> ValueConstructor<T, W>.createOrNull(
