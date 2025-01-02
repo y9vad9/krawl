@@ -21,6 +21,7 @@ class BrawlifyClientIntegrationTest {
         assertTrue(result.isSuccess, "Expected getEvents() to succeed but it failed.")
         val events = result.getOrNull()
         assertNotNull(events, "Expected non-null response from getEvents().")
+
         println("Active events: ${events.active.size}, Upcoming events: ${events.upcoming.size}")
     }
 

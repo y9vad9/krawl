@@ -3,7 +3,6 @@ package com.y9vad9.brawlifyapi.types.events
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyEventEmoji
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyEventName
 import com.y9vad9.brawlifyapi.types.maps.BrawlifyMap
-import com.y9vad9.bsapi.types.event.value.EventId
 import com.y9vad9.bsapi.types.event.value.EventSlotId
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable

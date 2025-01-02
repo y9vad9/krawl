@@ -14,7 +14,7 @@ public value class CountryCode private constructor(public val value: String) {
         /**
          * Used to provide information about global instead of localized information.
          */
-        public val GLOBAL: CountryCode = CountryCode("GLOBAL")
+        public val GLOBAL: CountryCode = CountryCode("global")
 
         public val UKRAINE: CountryCode = CountryCode("UA")
         public val GERMANY: CountryCode = CountryCode("DE")

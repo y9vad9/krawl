@@ -17,3 +17,12 @@ public value class EventId private constructor(public val raw: Int) : Comparable
         return raw.compareTo(other.raw)
     }
 }
+
+/**
+ * Tells whether [EventId] is from Brawl Stars, any
+ * friendly match or 'Map Maker' will be non-public.
+ *
+ * Use it to predetermine whether this event might be available, for example,
+ * on Brawlify.
+ */
+public val EventId.isPublic: Boolean get() = raw != 0

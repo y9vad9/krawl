@@ -7,6 +7,7 @@ import com.y9vad9.brawlifyapi.types.icons.BrawlifyClubIcon
 import com.y9vad9.brawlifyapi.types.icons.BrawlifyPlayerIcon
 import com.y9vad9.brawlifyapi.types.maps.BrawlifyMap
 import com.y9vad9.bsapi.types.event.value.EventId
+import com.y9vad9.bsapi.types.event.value.isPublic
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.*
@@ -62,6 +63,10 @@ public class BrawlifyClient(
      * [API Documentation](https://brawlapi.com/#/endpoints/maps)
      */
     public suspend fun getMap(eventId: EventId): Result<BrawlifyMap?> = runCatching {
+        // fast-way: no way to get the event, it's most likely to be
+        // map-maker
+        if (!eventId.isPublic) return@runCatching null
+
         val result = client.get("maps/${eventId.raw}")
 
         when (result.status) {

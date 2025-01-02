@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.flow
  * @param T The type of elements in the page.
  */
 public interface PagesIterator<T> {
+    public val pageSize: Count
+
     /**
      * Returns `true` if there is another page available, `false` otherwise.
      *
@@ -87,11 +89,11 @@ public fun <T, R> PagesIterator<T>.map(mapper: suspend (T) -> R): PagesIterator<
 public fun <T> PagesIterator(
     limit: Count,
     provider: suspend (limit: Count, cursors: Cursors?) -> Result<Page<T>>,
-): PagesIterator<T> = PagesIteratorImpl(provider = provider, limit = limit)
+): PagesIterator<T> = PagesIteratorImpl(provider = provider, pageSize = limit)
 
 private class PagesIteratorImpl<T>(
     private val provider: suspend (limit: Count, cursors: Cursors?) -> Result<Page<T>>,
-    private val limit: Count,
+    override val pageSize: Count,
     private var lastCursors: Cursors? = null,
 ) : PagesIterator<T> {
     /**
@@ -106,27 +108,29 @@ private class PagesIteratorImpl<T>(
         UNKNOWN, READY, DONE,
     }
 
-    private var state: State = State.UNKNOWN
+    private var nextState: State = State.UNKNOWN
+    private var prevState: State = State.DONE
 
     override fun hasNext(): Boolean {
-        return state != State.DONE
+        return nextState != State.DONE
     }
 
     override fun hasPrevious(): Boolean {
-        return state != State.UNKNOWN && lastCursors?.before != null
+        return prevState != State.DONE
     }
 
     override suspend fun next(): Result<List<T>> {
-        return provider(limit, Cursors(after = lastCursors?.after, before = null)).map {
-            lastCursors = it.paging.also { if (it?.after == null) state = State.DONE }
-            it.items ?: emptyList<T>()
+        return provider(pageSize, Cursors(after = lastCursors?.after, before = null)).map { page ->
+            lastCursors = page.paging
+                .also { nextState = if (it?.after == null) State.DONE else State.READY  }
+            page.items ?: emptyList()
         }
     }
 
     override suspend fun previous(): Result<List<T>> {
-        return provider(limit, Cursors(before = lastCursors?.before, after = null)).map {
-            lastCursors = it.paging.also { if (it?.after == null) state = State.DONE }
-            it.items ?: emptyList<T>()
+        return provider(pageSize, Cursors(before = lastCursors?.before, after = null)).map { page ->
+            lastCursors = page.paging.also { prevState = if (it?.before == null) State.DONE else State.READY  }
+            page.items ?: emptyList()
         }
     }
 }
@@ -138,6 +142,9 @@ internal class MappingPagesIterator<T, R>(
 ) : PagesIterator<R> {
     override fun hasNext(): Boolean = source.hasNext()
     override fun hasPrevious(): Boolean = source.hasPrevious()
+
+    override val pageSize: Count
+        get() = source.pageSize
 
     override suspend fun next(): Result<List<R>> {
         return source.next().map {
