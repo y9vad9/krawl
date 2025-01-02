@@ -43,11 +43,12 @@ public class BrawlStarsClient(
     bearerToken: String,
     json: Json = Json { ignoreUnknownKeys = true },
     engine: HttpClientEngine,
+    baseUrl: String = "https://api.brawlstars.com/v1/",
     configBlock: HttpClientConfig<*>.() -> Unit = {},
 ) {
     private val client: HttpClient = HttpClient(engine) {
         defaultRequest {
-            url("https://api.brawlstars.com/v1/")
+            url(baseUrl)
             accept(ContentType.Application.Json)
 
             bearerAuth(bearerToken)
