@@ -28,7 +28,7 @@ public data class Club(
 
     @Serializable
     public data class Ranking(
-        val clubTag: ClubTag,
+        val tag: ClubTag,
         val name: ClubName,
         val trophies: Trophies,
         val rank: RankingPosition,

@@ -63,3 +63,6 @@ public value class EventMode private constructor(public val raw: String) : Compa
         return raw.lowercase().compareTo(other.raw.lowercase())
     }
 }
+
+public val EventMode.isShowdown: Boolean
+    get() = this == EventMode.SOLO_SHOWDOWN || this == EventMode.DUO_SHOWDOWN || this == EventMode.TRIO_SHOWDOWN

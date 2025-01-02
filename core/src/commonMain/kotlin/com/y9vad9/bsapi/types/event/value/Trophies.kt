@@ -2,6 +2,7 @@ package com.y9vad9.bsapi.types.event.value
 
 import com.y9vad9.bsapi.types.ValueConstructor
 import com.y9vad9.bsapi.types.createUnsafe
+import com.y9vad9.bsapi.types.event.battle.*
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
 
@@ -35,8 +36,8 @@ public value class Trophies private constructor(public val raw: Int) : Comparabl
     }
 }
 
-public val Trophies.isPositive: Boolean get() = raw < 0
+public val Trophies.isPositive: Boolean get() = raw > 0
 public val Trophies.isNegative: Boolean get() = raw < 0
 
 @ValueConstructor.Unsafe
-internal fun Trophies.asRankedStageUnsafe(): RankedStage = RankedStage.createUnsafe(raw)
+public fun Trophies.asRankedStageUnsafe(): RankedStage = RankedStage.createUnsafe(raw)

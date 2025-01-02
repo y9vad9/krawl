@@ -9,6 +9,6 @@ public data class BrawlifyBrawlerStat(
     val brawler: BrawlerId,
     val winRate: BrawlifyRate,
     val useRate: BrawlifyRate,
-    // star player rate
-    val starRate: BrawlifyRate,
+    // star player rate (for teams battles)
+    val starRate: BrawlifyRate? = null,
 )

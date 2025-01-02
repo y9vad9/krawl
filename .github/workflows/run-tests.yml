@@ -17,5 +17,5 @@ jobs:
           distribution: 'corretto'
           java-version: '11'
           cache: 'gradle'
-      # Library current does not support testing official API client automatically
+      # Library current does not support testing an official API client automatically
       - run: ./gradlew jvmTest --no-daemon

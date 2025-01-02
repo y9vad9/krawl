@@ -7,6 +7,8 @@ import com.y9vad9.brawlifyapi.types.events.BrawlifyGameMode
 import com.y9vad9.brawlifyapi.types.events.value.BrawlifyUrl
 import com.y9vad9.brawlifyapi.types.maps.value.BrawlifyEnvironmentId
 import com.y9vad9.brawlifyapi.types.maps.value.BrawlifyEnvironmentName
+import com.y9vad9.brawlifyapi.types.stats.BrawlifyBrawlerStat
+import com.y9vad9.brawlifyapi.types.stats.BrawlifyTeamStat
 import com.y9vad9.bsapi.types.event.value.EventId
 import com.y9vad9.bsapi.types.event.value.MapName
 import com.y9vad9.bsapi.types.player.value.PlayerName
@@ -36,6 +38,8 @@ public data class BrawlifyMap(
     val dataUpdated: Instant,
     @Serializable(with = InstantFromUnixMillisecondsSerializer::class)
     val lastActive: Instant?,
+    val stats: List<BrawlifyBrawlerStat> = emptyList(),
+    val teamStats: List<BrawlifyTeamStat> = emptyList(),
 ) {
     @Serializable
     public data class Environment(

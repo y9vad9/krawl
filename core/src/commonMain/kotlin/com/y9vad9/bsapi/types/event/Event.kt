@@ -1,18 +1,22 @@
 package com.y9vad9.bsapi.types.event
 
-import com.y9vad9.bsapi.types.event.value.EventId
-import com.y9vad9.bsapi.types.event.value.EventMode
-import com.y9vad9.bsapi.types.event.value.EventModifier
-import com.y9vad9.bsapi.types.event.value.MapName
+import com.y9vad9.bsapi.types.event.value.*
 import kotlinx.serialization.Serializable
 
 @Serializable
 public data class Event(
-    val mode: EventMode,
+    /**
+     * Event's mode (brawl ball, etc). Might be null,
+     * if it's
+     */
+    val mode: EventMode? = null,
     val id: EventId,
-    val map: MapName,
+    // if community map or it's a friendly match
+    val map: MapName? = null,
     val modifiers: List<EventModifier>? = null,
 )
 
 public val Event.isWithoutModifiers: Boolean
     get() = modifiers.isNullOrEmpty() || modifiers.singleOrNull() == EventModifier.NONE
+
+public val Event.isOfficial: Boolean get() = id.isPublic && mode != null && map != null

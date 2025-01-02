@@ -6,7 +6,9 @@ import com.y9vad9.bsapi.types.brawler.value.BrawlerId
 import com.y9vad9.bsapi.types.club.value.ClubTag
 import com.y9vad9.bsapi.types.common.value.CountryCode
 import com.y9vad9.bsapi.types.createUnsafe
+import com.y9vad9.bsapi.types.event.battle.typed
 import com.y9vad9.bsapi.types.player.value.PlayerTag
+import com.y9vad9.bsapi.types.player.value.withHashTag
 import io.ktor.client.engine.java.*
 import kotlinx.coroutines.test.runTest
 import kotlin.test.*
@@ -17,13 +19,14 @@ class BrawlStarsClientIntegrationTest {
     private val client: BrawlStarsClient = BrawlStarsClient(testBearerToken, engine = Java.create())
     private val testPlayerTag = PlayerTag.createUnsafe("#9V8LCUC0G")
     private val testClubTag = ClubTag.createUnsafe("2YJ2RGGVC")
-    private val testBrawlerId = BrawlerId.createUnsafe(16000000)
+    private val testBrawlerId = BrawlerId.SHELLY
 
     @Test
     fun testGetPlayer() = runTest {
         if (testBearerToken.isBlank()) return@runTest
 
         val result = client.getPlayer(testPlayerTag)
+        result.getOrThrow()
         assertTrue(result.isSuccess, "Expected getPlayer() to succeed.")
         val player = result.getOrNull()
         assertNotNull(player, "Expected a non-null Player object.")
@@ -34,11 +37,16 @@ class BrawlStarsClientIntegrationTest {
     fun testGetPlayerBattlelog() = runTest {
         if (testBearerToken.isBlank()) return@runTest
 
+        println(testPlayerTag.withHashTag)
+
         val result = client.getPlayerBattlelog(testPlayerTag)
+        println(result.getOrThrow())
         assertTrue(result.isSuccess, "Expected getPlayerBattlelog() to succeed.")
         val battles = result.getOrNull()
         assertNotNull(battles, "Expected a non-null battle log.")
         println("Retrieved ${battles.size} battles.")
+
+        battles.typed() // simple test to make sure it does not throw anything
     }
 
     @Test
@@ -94,7 +102,7 @@ class BrawlStarsClientIntegrationTest {
         if (testBearerToken.isBlank()) return@runTest
 
         val result = client.getClubsRankings(CountryCode.GLOBAL)
-        
+
         assertTrue(result.isSuccess, "Expected getClubsRankings() to succeed.")
         val rankings = result.getOrNull()
         assertNotNull(rankings, "Expected a non-null list of club rankings.")
@@ -106,6 +114,8 @@ class BrawlStarsClientIntegrationTest {
         if (testBearerToken.isBlank()) return@runTest
 
         val result = client.getPlayersRankings(CountryCode.GLOBAL)
+        result.getOrThrow()
+
         assertTrue(result.isSuccess, "Expected getPlayersRankings() to succeed.")
         val rankings = result.getOrNull()
         assertNotNull(rankings, "Expected a non-null list of player rankings.")
@@ -117,6 +127,7 @@ class BrawlStarsClientIntegrationTest {
         if (testBearerToken.isBlank()) return@runTest
 
         val result = client.getBrawlerRankings(CountryCode.GLOBAL, testBrawlerId)
+        result.getOrThrow()
         assertTrue(result.isSuccess, "Expected getBrawlerRankings() to succeed.")
         val rankings = result.getOrNull()
         assertNotNull(rankings, "Expected a non-null list of brawler rankings.")

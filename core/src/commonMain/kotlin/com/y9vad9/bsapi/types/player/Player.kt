@@ -30,7 +30,7 @@ public data class Player(
     val duoVictories: Count,
     val bestRoboRumbleTime: Count,
     val bestTimeAsBigBrawler: Count,
-    val club: Club.View?,
+    val club: Club.View? = null,
     val brawlers: List<Brawler>,
 ) {
     @Serializable
@@ -40,16 +40,16 @@ public data class Player(
         val icon: PlayerIcon,
         val trophies: Trophies,
         val rank: RankingPosition,
-        val club: Club.View,
+        val club: Club.View? = null,
     )
 }
 
 @ExperimentalBSLibApi
-public fun Player.toClubMember(): ClubMember {
+public fun Player.toClubMember(clubRole: PlayerRole = PlayerRole.UNKNOWN): ClubMember {
     return ClubMember(
         tag = tag,
         name = name,
-        role = PlayerRole.UNKNOWN,
+        role = clubRole,
         trophies = trophies,
         icon = icon,
         nameColor = nameColor,

@@ -9,5 +9,8 @@ public enum class BattleResultKind {
     VICTORY,
 
     @SerialName("defeat")
-    DEFEAT
+    DEFEAT,
+
+    @SerialName("draw")
+    DRAW,
 }

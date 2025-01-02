@@ -7,14 +7,15 @@ import com.y9vad9.bsapi.types.club.ClubMember
 import com.y9vad9.bsapi.types.club.value.ClubTag
 import com.y9vad9.bsapi.types.common.value.Count
 import com.y9vad9.bsapi.types.common.value.CountryCode
-import com.y9vad9.bsapi.types.event.Battle
+import com.y9vad9.bsapi.types.event.battle.RawBattle
 import com.y9vad9.bsapi.types.event.ScheduledEvent
-import com.y9vad9.bsapi.types.exception.ClientError
+import com.y9vad9.bsapi.types.exception.BrawlStarsAPIException
 import com.y9vad9.bsapi.types.pagination.Cursors
 import com.y9vad9.bsapi.types.pagination.Page
 import com.y9vad9.bsapi.types.pagination.PagesIterator
 import com.y9vad9.bsapi.types.player.Player
 import com.y9vad9.bsapi.types.player.value.PlayerTag
+import com.y9vad9.bsapi.types.player.value.withHashTag
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.*
@@ -42,11 +43,12 @@ public class BrawlStarsClient(
     bearerToken: String,
     json: Json = Json { ignoreUnknownKeys = true },
     engine: HttpClientEngine,
+    baseUrl: String = "https://api.brawlstars.com/v1/",
     configBlock: HttpClientConfig<*>.() -> Unit = {},
 ) {
     private val client: HttpClient = HttpClient(engine) {
         defaultRequest {
-            url("https://api.brawlstars.com/v1/")
+            url(baseUrl)
             accept(ContentType.Application.Json)
 
             bearerAuth(bearerToken)
@@ -66,7 +68,7 @@ public class BrawlStarsClient(
      * @return [Result] containing the [Player] object if successful, or null if the player was not found.
      */
     public suspend fun getPlayer(tag: PlayerTag): Result<Player?> =
-        getRequest(typeInfo<Player>(), "players/${tag.toString().replace("#", "%23")}")
+        getRequest(typeInfo<Player>(), "players/${tag.withHashTag.replace("#", "%23")}")
 
     /**
      * Retrieves a player's battle log, showing recent battles.
@@ -74,12 +76,12 @@ public class BrawlStarsClient(
      * **Note:** New battles may take up to 30 minutes to appear in the battle log.
      *
      * @param tag The unique player tag (e.g., #PLAYER_TAG).
-     * @return [Result] containing a list of [Battle] objects if successful, or null if the player was not found.
+     * @return [Result] containing a list of [RawBattle] objects if successful, or null if the player was not found.
      */
-    public suspend fun getPlayerBattlelog(tag: PlayerTag): Result<List<Battle>?> =
-        getRequest<ItemsResponse<Battle>>(
-            typeInfo<ItemsResponse<Battle>>(),
-            "players/${tag.toString().replace("#", "%23")}/battlelog"
+    public suspend fun getPlayerBattlelog(tag: PlayerTag): Result<List<RawBattle>?> =
+        getRequest<ItemsResponse<RawBattle>>(
+            typeInfo<ItemsResponse<RawBattle>>(),
+            "players/${tag.withHashTag.replace("#", "%23")}/battlelog"
         ).map { it?.items }
 
     /**
@@ -199,7 +201,7 @@ public class BrawlStarsClient(
         return getRequest<ItemsResponse<Player.Ranking>>(
             typeInfo = typeInfo<ItemsResponse<Player.Ranking>>(),
             url = "rankings/${countryCode.value}/players",
-        ).map { it!!.items }
+        ).map { it?.items.orEmpty() }
     }
 
     /**
@@ -308,8 +310,18 @@ public class BrawlStarsClient(
                 result.body<T>(typeInfo)
             } else if (result.status == HttpStatusCode.NotFound) {
                 null
+            } else if (result.status == HttpStatusCode.BadRequest) {
+                throw BrawlStarsAPIException.BadRequest()
+            } else if (result.status == HttpStatusCode.Forbidden) {
+                throw BrawlStarsAPIException.AccessDenied()
+            } else if(result.status == HttpStatusCode.TooManyRequests) {
+                throw BrawlStarsAPIException.LimitsExceeded()
+            } else if (result.status == HttpStatusCode.InternalServerError) {
+                throw BrawlStarsAPIException.InternalServerError()
+            } else if (result.status == HttpStatusCode.ServiceUnavailable) {
+                throw BrawlStarsAPIException.UnderMaintenance()
             } else {
-                throw result.body<ClientError>()
+                throw BrawlStarsAPIException.RawHttpError(result.status)
             }
         }
 
