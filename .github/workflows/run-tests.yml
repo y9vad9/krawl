@@ -19,5 +19,5 @@ jobs:
           cache: 'gradle'
       - name: Run tests
         env:
-          BRAWL_STARS_API_KEY: ${{ secrets.BRAWL_STARS_API_KEY }}
+          BRAWL_STARS_API_TOKEN: ${{ secrets.BRAWL_STARS_API_TOKEN }}
         run: ./gradlew jvmTest --no-daemon
