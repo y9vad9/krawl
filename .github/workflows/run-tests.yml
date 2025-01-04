@@ -17,5 +17,7 @@ jobs:
           distribution: 'corretto'
           java-version: '11'
           cache: 'gradle'
-      # Library current does not support testing an official API client automatically
-      - run: ./gradlew jvmTest --no-daemon
+      - name: Run tests
+        env:
+          BRAWL_STARS_API_KEY: ${{ secrets.BRAWL_STARS_API_KEY }}
+        run: ./gradlew jvmTest --no-daemon

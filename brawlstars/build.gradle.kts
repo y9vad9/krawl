@@ -3,11 +3,11 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
 }
 
-group = "com.y9vad9.brawlify"
+group = "com.y9vad9.brawlstars"
 
 dependencies {
-    // -- Project --
-    commonMainApi(projects.brawlstars)
+    // -- My Libs --
+    commonMainApi(libs.y9vad9.ktiny.kotlidator)
 
     // -- Ktor Client (HTTP) --
     commonMainApi(libs.ktor.client.core)
@@ -19,9 +19,6 @@ dependencies {
     commonMainApi(libs.kotlinx.datetime)
     commonMainApi(libs.kotlinx.coroutines)
 
-    // -- My Libs --
-    commonMainApi(libs.y9vad9.ktiny.kotlidator)
-
     // -- Tests --
     commonTestImplementation(libs.kotlin.test)
     jvmTestImplementation(libs.ktor.client.java)
@@ -30,13 +27,13 @@ dependencies {
 
 mavenPublishing {
     coordinates(
-        groupId = "com.y9vad9.brawlify",
+        groupId = "com.y9vad9.brawlstars",
         artifactId = "core",
         version = System.getenv("LIB_VERSION") ?: return@mavenPublishing,
     )
 
     pom {
-        name.set("Brawlify API Client Library")
-        description.set("Type-safe library for accessing Brawlify API.")
+        name.set("Brawl Stars API Client Library")
+        description.set("Type-safe library for accessing Official Brawl Stars API.")
     }
 }

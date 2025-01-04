@@ -74,6 +74,9 @@ accompanist-systemUiController = { module = "com.google.accompanist:accompanist-
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 vanniktech-maven-publish = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.require = "0.30.0" }
 
+# My libs
+y9vad9-ktiny-kotlidator = { module = "com.y9vad9.ktiny:kotlidator", version.require = "0.0.1" }
+
 [plugins]
 # Build Conventions
 conventions-multiplatform = { id = "multiplatform-convention", version.require = "SNAPSHOT" }

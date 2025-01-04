@@ -1,14 +1,12 @@
-import com.y9vad9.brawlifyapi.BrawlifyClient
-import com.y9vad9.brawlifyapi.types.events.value.BrawlifyGameModeId
-import com.y9vad9.bsapi.types.ValueConstructor
-import com.y9vad9.bsapi.types.createUnsafe
+import com.y9vad9.brawlify.BrawlifyClient
+import com.y9vad9.brawlify.types.events.value.BrawlifyGameModeId
+import com.y9vad9.ktiny.kotlidator.createOrThrow
 import io.ktor.client.engine.java.*
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-@OptIn(ValueConstructor.Unsafe::class)
 class BrawlifyClientIntegrationTest {
 
     private val client: BrawlifyClient = BrawlifyClient(
@@ -52,7 +50,7 @@ class BrawlifyClientIntegrationTest {
     @Test
     fun testGetGameModeById() = runTest {
         // Replace `validGameModeId` with an actual ID to test.
-        val validGameModeId = BrawlifyGameModeId.createUnsafe(15)
+        val validGameModeId = BrawlifyGameModeId.createOrThrow(15)
         val result = client.getGameMode(validGameModeId)
         assertTrue(result.isSuccess, "Expected getGameMode() to succeed but it failed.")
     }

@@ -1,4 +1,4 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+renableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
@@ -21,4 +21,5 @@ rootProject.name = "brawlstars-api"
 
 includeBuild("build-conventions")
 
-include(":core", ":brawlify")
+include(":brawlstars")
+include(":brawlify")
