@@ -1,0 +1,16 @@
+package com.y9vad9.krawl.event.battle.participant
+
+import com.y9vad9.krawl.event.battle.brawler.FriendlyBattleBrawler
+import com.y9vad9.krawl.player.PlayerName
+import com.y9vad9.krawl.player.PlayerTag
+
+/**
+ * A bot that participated in the battle.
+ *
+ * This represents an AI-controlled participant. Occurs only in friendly battles.
+ */
+public data class BattleBot(
+    override val tag: PlayerTag,
+    override val name: PlayerName,
+    override val brawler: FriendlyBattleBrawler,
+) : BattleParticipant

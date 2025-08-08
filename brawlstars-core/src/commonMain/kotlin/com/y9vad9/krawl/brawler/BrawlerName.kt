@@ -1,0 +1,26 @@
+package com.y9vad9.krawl.brawler
+
+/**
+ * Represents a Brawler's name.
+ *
+ * This inline value class wraps a [String] and allows for lexicographic comparison
+ * between brawler names. Useful for sorting or ensuring type safety across the domain.
+ *
+ * Instances are compared based on the wrapped string value.
+ */
+@JvmInline
+public value class BrawlerName(
+    /** The raw string value of the brawler's name. */
+    public val string: String
+) : Comparable<BrawlerName> {
+
+    /**
+     * Compares this [BrawlerName] with [other] based on lexicographic order of the underlying [string].
+     */
+    override fun compareTo(other: BrawlerName): Int = string.compareTo(other.string)
+
+    /**
+     * Returns the string representation of the brawler name.
+     */
+    override fun toString(): String = string
+}
