@@ -9,16 +9,35 @@ Most libraries for the Brawl Stars and Brawlify APIs, regardless of language, of
 Krawl was built to fix that. It provides a Kotlin-first, type-safe experience designed to simplify API usage without sacrificing correctness or clarity. With rich models, helpful extensions, and thoughtful abstractions, Krawl turns low-level data into high-level utility.
 
 ## Status of Krawl
+> [!NOTE]
+> Currently, this is just an overview of what will be available after a release.
+
 - [x] [Official Brawl Stars API](https://developer.brawlstars.com/#/)
+  - [x] Players API
+    - [x] Player information
+    - [x] Player battlelog
+  - [x] Clubs API
+    - [x] List of members
+    - [x] Club information
+  - [x] Rankings API
+    - [x] Clubs ranking
+    - [x] Brawlers ranking
+    - [x] Players ranking
+  - [x] Brawlers API
+    - [x] List of brawlers
+    - [x] Brawler information
+  - [x] Events API
+    - [x] Event rotation information
 - [x] [Official Brawlify API](https://brawlapi.com/)
-  - [x] [Events](https://brawlapi.com/#/endpoints/events)
-  - [x] [Brawlers](https://brawlapi.com/#/endpoints/brawlers)
-  - [x] [Maps](https://brawlapi.com/#/endpoints/maps)
-  - [x] [Game Modes](https://brawlapi.com/#/endpoints/gamemodes)
-  - [x] [Icons](https://brawlapi.com/#/endpoints/icons)
+  - [x] [Events API](https://brawlapi.com/#/endpoints/events)
+  - [x] [Brawlers API](https://brawlapi.com/#/endpoints/brawlers)
+  - [x] [Maps API](https://brawlapi.com/#/endpoints/maps)
+  - [x] [Game Modes API](https://brawlapi.com/#/endpoints/gamemodes)
+  - [x] [Icons API](https://brawlapi.com/#/endpoints/icons)
   - [x] [Game Data (Raw files) API](https://brawlapi.com/#/endpoints/game-data)[^1]
 
-[^1]: Game Data (Raw files) API is supported through a Gradle Plugin with code-generation.
+[^1]: Game Data (Raw files) API is supported through a Gradle Plugin with code-generation or
+using [JsonElement](https://kotlinlang.org/api/kotlinx.serialization/kotlinx-serialization-json/kotlinx.serialization.json/-json-element/) with `brawlify-api`.
 
 ## Documentation
 - [Wiki](https://krawl.y9vad9.com)
@@ -31,8 +50,6 @@ Krawl is modular. Depending on your needs, you can choose between raw, low-level
 - `brawlify-gamedata-core` and `brawlify-gamedata-plugin`: access to Brawlify’s Game Data API. This includes raw data through code-generated models and experimental type-safe access to the localization API, implemented on top of the game data layer.
 
 ## Implementation
-<ul>
-<li>
 <details>
 <summary>Using Version Catalog</summary>
 
@@ -77,8 +94,6 @@ dependencies {
 ```
 
 </details>
-</li>
-<li>
 <details>
     <summary>Without Version Catalog</summary>
 
@@ -102,8 +117,6 @@ dependencies {
 ```
 
 </details>
-</li>
-<li>
 <details>
     <summary>Using Maven</summary>
 
@@ -134,11 +147,10 @@ dependencies {
   </dependency>
 </dependencies>
 ```
-> [!NOTE]: Game Data API is currently supported only through a Gradle Plugin.
+
+> Game Data API is currently supported only through a Gradle Plugin.
 
 </details>
-</li>
-</ul>
 
 ## Contributing
 Contributions are welcome! Please create a pull request or open an issue to suggest improvements or report bugs.
