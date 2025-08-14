@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a supported localization language for Brawl Stars, used to retrieve
  * translated game content via the Brawlify API.

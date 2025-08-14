@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.club
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a Brawl Stars club's textual description.
  *

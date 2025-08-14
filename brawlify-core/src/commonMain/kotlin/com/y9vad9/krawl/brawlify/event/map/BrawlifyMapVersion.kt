@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.map
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the version number of a Map in the Brawlify system.
  *

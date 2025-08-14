@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.brawler.classification
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a brawler class identifier as used in Brawlify.
  *

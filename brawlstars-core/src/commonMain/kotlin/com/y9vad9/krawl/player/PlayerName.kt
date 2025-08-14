@@ -6,6 +6,7 @@ import com.y9vad9.krawl.player.PlayerName.Companion.MIN_LENGTH
 import com.y9vad9.krawl.player.PlayerName.Companion.create
 import com.y9vad9.krawl.player.PlayerName.Companion.createOrNull
 import com.y9vad9.krawl.player.PlayerName.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a Brawl Stars player name, as shown in-game.

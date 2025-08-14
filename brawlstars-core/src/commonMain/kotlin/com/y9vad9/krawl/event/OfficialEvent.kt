@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.event
 
-/**ts a standard public event from the Brawl Stars battle log.
+/**
+ * The standard public event from the Brawl Stars battle log.
  *
  * These events are part of official matchmaking and played on Supercell-defined maps
  * and modes, such as Gem Grab or Brawl Ball. This type includes full metadata.

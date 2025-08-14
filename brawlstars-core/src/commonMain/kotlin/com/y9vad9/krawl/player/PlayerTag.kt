@@ -2,6 +2,7 @@ package com.y9vad9.krawl.player
 
 import com.y9vad9.krawl.player.PlayerTag.Companion.REGEX
 import com.y9vad9.krawl.player.PlayerTag.Companion.create
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a Brawl Stars player tag, used to uniquely identify players across the API.

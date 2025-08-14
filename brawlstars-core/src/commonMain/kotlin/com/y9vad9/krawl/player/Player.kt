@@ -1,7 +1,7 @@
 package com.y9vad9.krawl.player
 
 import com.y9vad9.krawl.brawler.Brawlers
-import com.y9vad9.krawl.common.PlayerNameColor
+import com.y9vad9.krawl.common.HexColor
 
 /**
  * Represents a player in Brawl Stars, including their metadata, progression, and roster.
@@ -21,7 +21,7 @@ import com.y9vad9.krawl.common.PlayerNameColor
 public data class Player(
     public val tag: PlayerTag,
     public val name: PlayerName,
-    public val nameColor: PlayerNameColor,
+    public val nameColor: HexColor,
     public val progression: PlayerProgression,
     public val championship: PlayerChampionshipQualification,
     public val records: PlayerRecords,

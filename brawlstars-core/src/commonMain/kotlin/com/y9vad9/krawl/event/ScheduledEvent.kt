@@ -22,7 +22,7 @@ public data class ScheduledEvent private constructor(
     public val startTime: Instant,
     public val endTime: Instant,
     public val slotId: EventSlotId,
-    public val details: OfficialEvent,
+    public val details: ScheduledEventDetails,
 ) {
     public companion object {
         private const val ERROR = "startTime must not be after endTime"
@@ -40,7 +40,7 @@ public data class ScheduledEvent private constructor(
             startTime: Instant,
             endTime: Instant,
             slotId: EventSlotId,
-            details: OfficialEvent
+            details: ScheduledEventDetails
         ): Result<ScheduledEvent> =
             if (startTime <= endTime) {
                 Result.success(ScheduledEvent(startTime, endTime, slotId, details))
@@ -55,7 +55,7 @@ public data class ScheduledEvent private constructor(
             startTime: Instant,
             endTime: Instant,
             slotId: EventSlotId,
-            details: OfficialEvent
+            details: ScheduledEventDetails
         ): ScheduledEvent = create(startTime, endTime, slotId, details).getOrThrow()
 
         /**
@@ -65,7 +65,7 @@ public data class ScheduledEvent private constructor(
             startTime: Instant,
             endTime: Instant,
             slotId: EventSlotId,
-            details: OfficialEvent
+            details: ScheduledEventDetails
         ): ScheduledEvent? = create(startTime, endTime, slotId, details).getOrNull()
     }
 }

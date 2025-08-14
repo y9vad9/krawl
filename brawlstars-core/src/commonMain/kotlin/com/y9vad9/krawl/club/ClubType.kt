@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.club
 
 import com.y9vad9.krawl.club.ClubType.Companion.UNKNOWN
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the type of a Brawl Stars Club (Open / Invite-only / Closed).

@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawler
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a unique identifier for a Gear in Brawl Stars.
  *

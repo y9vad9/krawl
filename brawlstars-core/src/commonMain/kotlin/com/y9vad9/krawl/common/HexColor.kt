@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the hexadecimal color assigned to a player's name in Brawl Stars.
  *

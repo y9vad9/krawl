@@ -5,6 +5,7 @@ import com.y9vad9.krawl.brawler.BrawlerRank.Companion.MIN
 import com.y9vad9.krawl.brawler.BrawlerRank.Companion.create
 import com.y9vad9.krawl.brawler.BrawlerRank.Companion.createOrNull
 import com.y9vad9.krawl.brawler.BrawlerRank.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a Brawler's rank in Brawl Stars.

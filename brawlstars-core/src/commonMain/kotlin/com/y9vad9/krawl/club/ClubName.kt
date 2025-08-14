@@ -2,6 +2,7 @@ package com.y9vad9.krawl.club
 
 import com.y9vad9.krawl.club.ClubName.Companion.LENGTH_RANGE
 import com.y9vad9.krawl.club.ClubName.Companion.create
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a Brawl Stars club name, as displayed in-game.

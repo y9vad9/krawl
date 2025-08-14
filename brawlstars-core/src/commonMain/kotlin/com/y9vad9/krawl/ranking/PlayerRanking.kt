@@ -1,9 +1,9 @@
 package com.y9vad9.krawl.ranking
 
 import com.y9vad9.krawl.club.ClubName
+import com.y9vad9.krawl.common.HexColor
 import com.y9vad9.krawl.player.PlayerIconId
 import com.y9vad9.krawl.player.PlayerName
-import com.y9vad9.krawl.common.PlayerNameColor
 import com.y9vad9.krawl.player.PlayerTag
 
 /**
@@ -24,7 +24,7 @@ public data class PlayerRanking(
     public val tag: PlayerTag,
     public val name: PlayerName,
     public val icon: PlayerIconId,
-    public val nameColor: PlayerNameColor,
+    public val nameColor: HexColor,
     public val rank: RankingPosition,
     public val clubName: ClubName,
 )

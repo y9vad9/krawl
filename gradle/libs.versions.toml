@@ -26,6 +26,7 @@ detekt-compose = "0.4.26"
 kover = "0.9.1"
 valdi = "0.2.0"
 dokka = "2.0.0"
+jupiter-engine = "5.13.4"
 
 [libraries]
 # ───────────────────────────────────────────────────────────────────────────────
@@ -58,6 +59,7 @@ ktor-server-statusPages = { module = "io.ktor:ktor-server-status-pages", version
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jupiter-engine" }
 
 # ───────────────────────────────────────────────────────────────────────────────
 # SQLDelight / Database
@@ -136,6 +138,7 @@ mordant-markdown = { module = "com.github.ajalt.mordant:mordant-markdown", versi
 # Misc / Core Libraries
 # ───────────────────────────────────────────────────────────────────────────────
 squareup-okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 # ───────────────────────────────────────────────────────────────────────────────
 # AndroidX

@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.map.environment
 
 import com.y9vad9.krawl.brawlify.event.gamemode.BrawlifyGameModeName
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a human-readable name of a Brawlify map environment.

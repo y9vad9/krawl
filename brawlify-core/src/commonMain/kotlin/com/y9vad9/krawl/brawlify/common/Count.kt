@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a strictly positive integer count value.
  *
@@ -10,7 +12,9 @@ package com.y9vad9.krawl.brawlify.common
  * @property rawInt The underlying positive integer value.
  */
 @JvmInline
-public value class Count private constructor(public val rawInt: Int) : Comparable<Count> {
+public value class Count private constructor(
+    public val rawInt: Int,
+) : Comparable<Count> {
 
     override fun compareTo(other: Count): Int = rawInt.compareTo(other.rawInt)
 

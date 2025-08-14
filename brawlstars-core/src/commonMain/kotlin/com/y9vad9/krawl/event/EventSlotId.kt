@@ -5,6 +5,7 @@ import com.y9vad9.krawl.event.EventSlotId.Companion.create
 import com.y9vad9.krawl.event.EventSlotId.Companion.createOrNull
 import com.y9vad9.krawl.event.EventSlotId.Companion.createOrThrow
 import com.y9vad9.krawl.event.EventSlotId.Companion.isValid
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the unique identifier for an event slot in Brawl Stars.

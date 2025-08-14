@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.slot
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the name of an event slot within the game events screen.
  *
@@ -9,4 +11,6 @@ package com.y9vad9.krawl.brawlify.event.slot
  * @property rawString The raw string value of the event slot name.
  */
 @JvmInline
-public value class BrawlifyEventSlotName(public val rawString: String)
+public value class BrawlifyEventSlotName(
+    public val rawString: String,
+)

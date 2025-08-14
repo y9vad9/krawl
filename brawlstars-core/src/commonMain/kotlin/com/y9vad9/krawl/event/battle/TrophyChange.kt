@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.event.battle
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a change in trophies resulting from a Brawl Stars battle.
  *

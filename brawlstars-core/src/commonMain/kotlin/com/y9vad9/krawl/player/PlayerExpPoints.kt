@@ -3,6 +3,7 @@ package com.y9vad9.krawl.player
 import com.y9vad9.krawl.player.PlayerExpPoints.Companion.create
 import com.y9vad9.krawl.player.PlayerExpPoints.Companion.createOrNull
 import com.y9vad9.krawl.player.PlayerExpPoints.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the experience points (XP) earned by a Brawl Stars player.

@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.event
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a ranked stage in the game's competitive ranking system.
  *

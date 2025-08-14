@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a Brawl Stars Translation Identifier (TID), a stable string-based key used throughout game data.
  *
@@ -13,4 +15,6 @@ package com.y9vad9.krawl.brawlify.common
  * @property rawString The raw identifier string as defined in the game data.
  */
 @JvmInline
-public value class BrawlStarsTID(public val rawString: String)
+public value class BrawlStarsTID(
+    public val rawString: String,
+)

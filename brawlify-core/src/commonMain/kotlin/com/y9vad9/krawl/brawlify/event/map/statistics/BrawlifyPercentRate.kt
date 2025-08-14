@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.map.statistics
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a bounded percentage rate (e.g., use rate, win rate) within the range [0.0, 100.0].
  *

@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents an internal Supercell identifier used in Brawlify metadata.
  *
@@ -11,4 +13,6 @@ package com.y9vad9.krawl.brawlify.common
  * TODO: Verify the exact purpose and scope of this identifier.
  */
 @JvmInline
-public value class BrawlifyScId(public val rawInt: Int)
+public value class BrawlifyScId(
+    public val rawInt: Int,
+)

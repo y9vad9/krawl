@@ -1,14 +1,14 @@
 package com.y9vad9.krawl.event.battle
 
 /**
- * Represents the result of a team-based battle in Brawl Stars.
+ * Represents the result of a team-based battle (or in duels) in Brawl Stars.
  *
  * This enum distinguishes between the three possible outcomes a team can experience:
  * - [VICTORY]: The team won the match.
  * - [DRAW]: The match ended with no winner or loser.
  * - [DEFEAT]: The team lost the match.
  */
-public enum class TeamsBattleResult {
+public enum class BattleResult {
     /** The team successfully won the battle. */
     VICTORY,
 

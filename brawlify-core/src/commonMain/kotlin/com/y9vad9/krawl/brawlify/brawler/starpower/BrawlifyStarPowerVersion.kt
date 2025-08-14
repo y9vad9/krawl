@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.brawlify.brawler.starpower
 
 import com.y9vad9.krawl.brawlify.event.map.BrawlifyMapVersion
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the version number of a Star Power in the Brawlify system.

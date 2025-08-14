@@ -3,6 +3,7 @@ package com.y9vad9.krawl.player
 import com.y9vad9.krawl.player.PlayerExpLevel.Companion.create
 import com.y9vad9.krawl.player.PlayerExpLevel.Companion.createOrNull
 import com.y9vad9.krawl.player.PlayerExpLevel.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the account experience level of a Brawl Stars player.

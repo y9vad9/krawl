@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.club
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the number of members in a Brawl Stars club.
  *

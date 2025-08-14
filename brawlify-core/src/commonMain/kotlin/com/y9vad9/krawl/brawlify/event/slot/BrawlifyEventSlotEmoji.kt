@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.slot
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a single emoji used for identifying or decorating Brawlify event slots.
  *
@@ -23,15 +25,14 @@ public value class BrawlifyEventSlotEmoji private constructor(
          * Validation requires:
          * - Exactly one or two Unicode code points (to allow for combined emojis).
          * - Matches a single grapheme cluster.
-         * - Contains at least one character that is emoji-like in Unicode ranges.
+         * - Contains characters that are emoji-like in Unicode ranges.
          *
          * @param value The string to validate.
          * @return `true` if [value] is a single emoji, `false` otherwise.
          */
         public fun isValid(value: String): Boolean {
-            return value.codePoints().count() in 1..2 &&
-                emojiRegex.matches(value) &&
-                value.any { it.isEmojiLike() }
+            return emojiRegex.matches(value) &&
+                value.all { it.isEmojiLike() }
         }
 
         /**

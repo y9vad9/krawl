@@ -4,6 +4,7 @@ import com.y9vad9.krawl.brawler.BrawlerPowerLevel.Companion.MAX
 import com.y9vad9.krawl.brawler.BrawlerPowerLevel.Companion.MAX_VALUE
 import com.y9vad9.krawl.brawler.BrawlerPowerLevel.Companion.MIN
 import com.y9vad9.krawl.brawler.BrawlerPowerLevel.Companion.MIN_VALUE
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a power level for a Brawler in Brawl Stars.

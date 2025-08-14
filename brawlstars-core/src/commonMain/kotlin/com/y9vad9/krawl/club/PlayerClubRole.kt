@@ -2,6 +2,7 @@ package com.y9vad9.krawl.club
 
 import com.y9vad9.krawl.club.PlayerClubRole.Companion.UNKNOWN
 import com.y9vad9.krawl.club.PlayerClubRole.Companion.from
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a member’s role within a Brawl Stars Club.

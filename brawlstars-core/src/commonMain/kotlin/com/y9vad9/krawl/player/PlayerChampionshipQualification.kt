@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.player
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents whether a Brawl Stars player is currently qualified
  * from the ongoing Championship Challenge or Monthly Qualifier event.

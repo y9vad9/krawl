@@ -3,6 +3,7 @@ package com.y9vad9.krawl.club
 import com.y9vad9.krawl.club.ClubTag.Companion.MAX_LENGTH
 import com.y9vad9.krawl.club.ClubTag.Companion.MIN_LENGTH
 import com.y9vad9.krawl.club.ClubTag.Companion.REGEX
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a validated Brawl Stars **club tag**, used to uniquely identify clubs within the game.
@@ -20,7 +21,7 @@ import com.y9vad9.krawl.club.ClubTag.Companion.REGEX
  */
 @JvmInline
 public value class ClubTag private constructor(
-    private val string: String,
+    private val rawString: String,
 ) {
     /**
      * Returns the tag string with a leading `#`, even if not originally present.
@@ -30,7 +31,7 @@ public value class ClubTag private constructor(
      * @return The tag string prefixed with `#`.
      */
     public val stringWithTagPrefix: String
-        get() = if (string.startsWith("#")) string else "#$string"
+        get() = if (rawString.startsWith("#")) rawString else "#$rawString"
 
     /**
      * Returns the tag string without the leading `#`.
@@ -40,7 +41,7 @@ public value class ClubTag private constructor(
      * @return The tag string without the `#` prefix.
      */
     public val stringWithoutTagPrefix: String
-        get() = if (string.startsWith("#")) string.substring(1) else string
+        get() = if (rawString.startsWith("#")) rawString.substring(1) else rawString
 
     /**
      * Returns the canonical display format of the tag, always prefixed with `#`.

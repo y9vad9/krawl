@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.map.statistics
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the name of a team in Brawlify context, typically used in ranked or competition-based events.
  *

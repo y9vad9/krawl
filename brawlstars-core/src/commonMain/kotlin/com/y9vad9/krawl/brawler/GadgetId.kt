@@ -5,6 +5,7 @@ import com.y9vad9.krawl.brawler.GadgetId.Companion.MIN_VALUE
 import com.y9vad9.krawl.brawler.GadgetId.Companion.create
 import com.y9vad9.krawl.brawler.GadgetId.Companion.createOrNull
 import com.y9vad9.krawl.brawler.GadgetId.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a unique identifier for a Gadget in Brawl Stars.

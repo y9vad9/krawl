@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.brawler.classification
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the textual class name of a Brawler in the Brawlify system, e.g. "Tank", "Marksman".
  *

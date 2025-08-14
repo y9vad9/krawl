@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.player
 
 import com.y9vad9.krawl.player.PlayerIconId.Companion.MIN_VALUE
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a unique identifier for a player icon in Brawl Stars.

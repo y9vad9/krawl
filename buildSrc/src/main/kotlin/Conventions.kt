@@ -26,9 +26,14 @@ class ConventionNamespace internal constructor(
     val tests: String = "tests-convention",
     val kover: String = "kover-convention",
     val detekt: String = "detekt-convention",
+    val module: ModuleNamespace = ModuleNamespace(),
     val multiplatform: MultiplatformNamespace = MultiplatformNamespace(),
 )
 
+class ModuleNamespace(
+    public val core: String = "core-convention",
+    public val api: String = "api-convention",
+)
 
 /**
  * Convention plugins used in Kotlin Multiplatform projects.

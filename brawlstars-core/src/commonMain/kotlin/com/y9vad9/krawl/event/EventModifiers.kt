@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.event
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a set of gameplay modifiers applied to a single Brawl Stars event.
  *
@@ -9,7 +11,14 @@ package com.y9vad9.krawl.event
  * @property list The set of individual [EventModifier] instances applied.
  */
 @JvmInline
-public value class EventModifiers(public val list: Set<EventModifier>) {
+public value class EventModifiers(public val list: List<EventModifier>) {
+    public companion object {
+        /**
+         * Represents an empty set of event modifiers.
+         */
+        public val EMPTY: EventModifiers = EventModifiers(emptyList())
+    }
+
     /**
      * Returns true if this event has at least one modifier applied.
      */
@@ -41,7 +50,7 @@ public val EventModifiers.isComposite: Boolean get() = list.size > 1
  * indicates no gameplay-affecting modifiers are present.
  */
 public val EventModifiers.explicitlyNone: Boolean
-    get() = list.contains(EventModifier.NONE)
+    get() = has(EventModifier.NONE)
 
 /**
  * Returns a human-readable list of modifier names for display or logging.

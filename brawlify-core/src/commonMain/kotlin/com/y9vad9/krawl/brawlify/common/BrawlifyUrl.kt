@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * URL that is pointing to the brawlify website with a regular page.
  *

@@ -1,9 +1,9 @@
 package com.y9vad9.krawl.club
 
+import com.y9vad9.krawl.common.HexColor
 import com.y9vad9.krawl.event.Trophies
 import com.y9vad9.krawl.player.PlayerIconId
 import com.y9vad9.krawl.player.PlayerName
-import com.y9vad9.krawl.common.PlayerNameColor
 import com.y9vad9.krawl.player.PlayerTag
 
 /**
@@ -22,7 +22,7 @@ import com.y9vad9.krawl.player.PlayerTag
 public data class ClubMember(
     public val tag: PlayerTag,
     public val name: PlayerName,
-    public val nameColor: PlayerNameColor,
+    public val nameColor: HexColor,
     public val trophies: Trophies,
     public val role: PlayerClubRole,
     public val iconId: PlayerIconId,

@@ -7,6 +7,9 @@ plugins {
 kotlin {
     jvm()
     jvmToolchain(11)
+    js {
+        browser()
+    }
 
     explicitApi = ExplicitApiMode.Strict
 
@@ -14,6 +17,7 @@ kotlin {
         all {
             compilerOptions {
                 optIn.add("kotlin.time.ExperimentalTime")
+                allWarningsAsErrors = true
             }
         }
     }

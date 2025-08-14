@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a hash field returned by the API.
  *
@@ -11,4 +13,6 @@ package com.y9vad9.krawl.brawlify.common
  * @property rawString The underlying hash string value.
  */
 @JvmInline
-public value class BrawlifyHash(public val rawString: String)
+public value class BrawlifyHash(
+    public val rawString: String,
+)

@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.event
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a specific gameplay modifier applied to a Brawl Stars event.
  *

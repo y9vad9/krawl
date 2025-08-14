@@ -4,6 +4,7 @@ import com.y9vad9.krawl.event.EventId.Companion.VALUE_RANGE
 import com.y9vad9.krawl.event.EventId.Companion.create
 import com.y9vad9.krawl.event.EventId.Companion.createOrNull
 import com.y9vad9.krawl.event.EventId.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the unique identifier of a Brawl Stars event (e.g., for maps or game modes).

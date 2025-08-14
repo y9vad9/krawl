@@ -3,6 +3,7 @@ package com.y9vad9.krawl.player
 import com.y9vad9.krawl.player.VictoriesAmount.Companion.create
 import com.y9vad9.krawl.player.VictoriesAmount.Companion.createOrNull
 import com.y9vad9.krawl.player.VictoriesAmount.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents the number of victories a Brawl Stars player has achieved.

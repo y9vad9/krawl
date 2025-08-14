@@ -2,6 +2,7 @@ package com.y9vad9.krawl.club
 
 import com.y9vad9.krawl.club.ClubBadgeId.Companion.MAX_BADGE_ID
 import com.y9vad9.krawl.club.ClubBadgeId.Companion.MIN_BADGE_ID
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a unique identifier for a Brawl Stars Club Badge.

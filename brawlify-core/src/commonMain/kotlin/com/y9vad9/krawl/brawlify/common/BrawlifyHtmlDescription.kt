@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.common
 
+import kotlin.jvm.JvmInline
+
 /**
  * A value class representing an HTML-formatted description string from Brawlify.
  *
@@ -12,7 +14,9 @@ package com.y9vad9.krawl.brawlify.common
  * @property rawString The raw HTML string content.
  */
 @JvmInline
-public value class BrawlifyHtmlDescription(public val rawString: String) {
+public value class BrawlifyHtmlDescription(
+    public val rawString: String,
+) {
     public companion object {
         /**
          * Escapes special characters in the given [text] to produce a safe HTML-encoded [BrawlifyHtmlDescription].

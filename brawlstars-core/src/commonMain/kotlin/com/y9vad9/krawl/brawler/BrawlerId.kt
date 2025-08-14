@@ -5,6 +5,7 @@ import com.y9vad9.krawl.brawler.BrawlerId.Companion.MIN_VALUE
 import com.y9vad9.krawl.brawler.BrawlerId.Companion.create
 import com.y9vad9.krawl.brawler.BrawlerId.Companion.createOrNull
 import com.y9vad9.krawl.brawler.BrawlerId.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a unique identifier for a Brawler in Brawl Stars.
@@ -18,7 +19,7 @@ import com.y9vad9.krawl.brawler.BrawlerId.Companion.createOrThrow
 @JvmInline
 public value class BrawlerId private constructor(
     /** The underlying integer value of the brawler ID. */
-    public val int: Int,
+    public val rawInt: Int,
 ) : Comparable<BrawlerId> {
 
     /** Constants with constraints and validation */
@@ -641,5 +642,6 @@ public value class BrawlerId private constructor(
      * @return A negative integer, zero, or a positive integer as this ID
      * is less than, equal to, or greater than the other ID.
      */
-    override fun compareTo(other: BrawlerId): Int = int.compareTo(other.int)
+    override fun compareTo(other: BrawlerId): Int = rawInt.compareTo(other.rawInt)
 }
+

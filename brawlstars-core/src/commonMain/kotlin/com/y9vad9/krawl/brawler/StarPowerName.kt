@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawler
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the name of a Star Power in Brawl Stars.
  *

@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawler
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents a Brawler's name.
  *

@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.event
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the name of a Brawl Stars map as a raw [String] value.
  *

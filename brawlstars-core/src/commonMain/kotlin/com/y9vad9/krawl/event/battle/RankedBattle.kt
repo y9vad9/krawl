@@ -26,7 +26,7 @@ public sealed interface RankedBattle : TeamsBattle {
      * Might be null if the game is unfinished (can be either in progress or just left through the exit button
      * in case of friendly battles).
      */
-    public val result: TeamsBattleResult?
+    public val result: BattleResult?
 
     /**
      * The matchmaking type (solo/duo/trio).
@@ -38,11 +38,11 @@ public sealed interface RankedBattle : TeamsBattle {
      *
      * A round contains the outcome (win/draw/loss) and its duration.
      *
-     * @property result The outcome of the round for the team, represented by [TeamsBattleResult].
+     * @property result The outcome of the round for the team, represented by [BattleResult].
      * @property duration The time the round lasted, as a [Duration].
      */
     public data class Round(
-        public val result: TeamsBattleResult,
+        public val result: BattleResult,
         public val duration: Duration,
     )
 }
@@ -97,7 +97,7 @@ public data class FriendlyRankedBattle(
     override val rounds: List<RankedBattle.Round>,
     override val teams: FriendlyBattleTeamsParticipants,
     override val starPlayer: FriendlyBattleStarPlayer,
-    override val result: TeamsBattleResult?,
+    override val result: BattleResult?,
     override val matchmakingType: RankedMatchmakingType,
 ) : RankedBattle, FriendlyBattle
 
@@ -120,7 +120,7 @@ public data class LeagueRankedBattle(
     override val rounds: List<RankedBattle.Round>,
     override val teams: RankedBattleTeamsPlayers,
     override val starPlayer: RankedBattleStarPlayer,
-    override val result: TeamsBattleResult?,
+    override val result: BattleResult?,
     override val matchmakingType: RankedMatchmakingType,
 ) : RankedBattle
 

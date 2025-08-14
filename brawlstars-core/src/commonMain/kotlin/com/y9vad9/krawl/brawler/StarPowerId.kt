@@ -6,6 +6,7 @@ import com.y9vad9.krawl.brawler.StarPowerId.Companion.VALUE_RANGE
 import com.y9vad9.krawl.brawler.StarPowerId.Companion.create
 import com.y9vad9.krawl.brawler.StarPowerId.Companion.createOrNull
 import com.y9vad9.krawl.brawler.StarPowerId.Companion.createOrThrow
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a unique identifier for a Star Power in Brawl Stars.

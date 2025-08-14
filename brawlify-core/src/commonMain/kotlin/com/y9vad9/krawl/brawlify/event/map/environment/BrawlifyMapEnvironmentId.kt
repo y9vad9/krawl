@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.map.environment
 
 import com.y9vad9.krawl.brawlify.event.gamemode.BrawlifyGameModeId
+import kotlin.jvm.JvmInline
 
 /**
  * Represents a unique environment identifier returned by the Brawlify API for a map.

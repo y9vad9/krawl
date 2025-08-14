@@ -1,5 +1,7 @@
 package com.y9vad9.krawl.brawlify.brawler.rarity
 
+import kotlin.jvm.JvmInline
+
 /**
  * Represents the display name of a Brawler's rarity in the Brawlify system.
  *
