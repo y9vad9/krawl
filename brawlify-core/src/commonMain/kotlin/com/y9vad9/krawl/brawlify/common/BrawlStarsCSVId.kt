@@ -13,6 +13,6 @@ import kotlin.jvm.JvmInline
  * TODO: Verify the exact purpose and scope of this identifier.
  */
 @JvmInline
-public value class BrawlifyScId(
+public value class BrawlStarsCSVId(
     public val rawInt: Int,
 )

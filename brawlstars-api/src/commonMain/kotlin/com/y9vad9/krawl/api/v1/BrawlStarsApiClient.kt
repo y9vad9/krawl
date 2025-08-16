@@ -1,5 +1,6 @@
 package com.y9vad9.krawl.api.v1
 
+import com.y9vad9.krawl.ExperimentalKrawlApi
 import com.y9vad9.krawl.api.v1.BrawlStarsApiClient.Companion.DEFAULT_COUNTRY_CODE
 import com.y9vad9.krawl.api.v1.battle.BattleRecord
 import com.y9vad9.krawl.api.v1.club.Club
@@ -158,7 +159,6 @@ public interface BrawlStarsApiClient {
      *
      * Supports pagination using the `after` and `before` cursors from a previous [PaginatedList].
      *
-     * @param brawlerId The ID of the brawler.
      * @param countryCode The country code for rankings (default is [DEFAULT_COUNTRY_CODE]).
      * @param after Optional cursor to return results **after** the given item, for pagination.
      * @param before Optional cursor to return results **before** the given item, for pagination.
@@ -166,7 +166,6 @@ public interface BrawlStarsApiClient {
      * @return A [Result] wrapping a [PaginatedList] of [PlayerRanking], or a failure if the request failed.
      */
     public suspend fun getPlayerRanking(
-        brawlerId: Int,
         countryCode: String = DEFAULT_COUNTRY_CODE,
         after: String? = null,
         before: String? = null,
@@ -196,7 +195,7 @@ public interface BrawlStarsApiClient {
      *
      * @return A list of [ScheduledEvent] representing upcoming events.
      */
-    public suspend fun getEventRotation(): Result<List<ScheduledEvent>>
+    public suspend fun getEventsRotation(): Result<List<ScheduledEvent>>
 }
 
 /**
@@ -205,9 +204,8 @@ public interface BrawlStarsApiClient {
  *
  * @param maxRequests Maximum number of requests allowed per [per] duration.
  * @param per The time window for rate limiting.
- *
- * TODO experimental annotation
  */
+@ExperimentalKrawlApi
 public fun BrawlStarsApiClient.rateLimited(
     maxRequests: Int,
     per: Duration,
@@ -243,9 +241,8 @@ public suspend fun BrawlStarsApiClient.tryGetBrawlerRanking(
  * Returns the player ranking if successful, or null in case of error.
  */
 public suspend fun BrawlStarsApiClient.tryGetPlayerRanking(
-    brawlerId: Int,
     countryCode: String = DEFAULT_COUNTRY_CODE,
-): List<PlayerRanking>? = getPlayerRanking(brawlerId, countryCode).getOrNull()
+): List<PlayerRanking>? = getPlayerRanking(countryCode).getOrNull()
 
 /**
  * Returns the club ranking if successful, or null in case of error.
@@ -253,3 +250,15 @@ public suspend fun BrawlStarsApiClient.tryGetPlayerRanking(
 public suspend fun BrawlStarsApiClient.tryGetClubRanking(
     countryCode: String = DEFAULT_COUNTRY_CODE,
 ): List<ClubRanking>? = getClubRanking(countryCode).getOrNull()
+
+/**
+ * Returns the club ranking if successful, or null in case of error.
+ */
+public suspend fun BrawlStarsApiClient.tryGetEventsRotation(): List<ScheduledEvent>? =
+    getEventsRotation().getOrNull()
+
+/**
+ * Returns the player battle log if successful, or null in case of error.
+ */
+public suspend fun BrawlStarsApiClient.tryGetPlayerBattleLog(tag: String): List<BattleRecord>? =
+    getPlayerBattleLog(tag).getOrNull()

@@ -1,5 +1,6 @@
 package com.y9vad9.krawl.api.v1
 
+import com.y9vad9.krawl.ExperimentalKrawlApi
 import com.y9vad9.krawl.api.v1.battle.BattleRecord
 import com.y9vad9.krawl.api.v1.club.Club
 import com.y9vad9.krawl.api.v1.club.ClubMember
@@ -9,28 +10,27 @@ import com.y9vad9.krawl.api.v1.player.Player
 import com.y9vad9.krawl.api.v1.ranking.ClubRanking
 import com.y9vad9.krawl.api.v1.ranking.PlayerRanking
 import kotlin.time.Clock
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlin.time.Duration
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 /**
- * # Rate-Limited Brawl Stars API Client
+ * Rate-Limited Brawl Stars API Client.
  *
  * Wraps another [BrawlStarsApiClient] and enforces a global rate limit across all API requests.
  *
  * @param delegate The underlying [BrawlStarsApiClient] to forward calls to.
  * @param maxRequests Maximum number of requests allowed per [per] duration.
  * @param per The time window for rate limiting.
+ * @param clock Clock to be used to measure throttling.
  */
-internal class RateLimitedBrawlStarsApiClient(
+@ExperimentalKrawlApi
+public class RateLimitedBrawlStarsApiClient(
     private val delegate: BrawlStarsApiClient,
     maxRequests: Int,
     per: Duration,
+    private val clock: Clock = Clock.System
 ) : BrawlStarsApiClient {
     private val mutex = Mutex()
     private var lastRequestTime = 0L
@@ -38,7 +38,7 @@ internal class RateLimitedBrawlStarsApiClient(
 
     private suspend fun <T> rateLimitedCall(block: suspend () -> T): T {
         mutex.withLock {
-            val now = Clock.System.now().toEpochMilliseconds()
+            val now = clock.now().toEpochMilliseconds()
             val waitTime = lastRequestTime + intervalMs - now
             if (waitTime > 0) delay(waitTime)
             lastRequestTime = Clock.System.now().toEpochMilliseconds()
@@ -113,7 +113,6 @@ internal class RateLimitedBrawlStarsApiClient(
      *
      * Supports pagination using the `after` and `before` cursors from a previous [PaginatedList].
      *
-     * @param brawlerId The ID of the brawler.
      * @param countryCode The country code for rankings (default is [Companion.DEFAULT_COUNTRY_CODE]).
      * @param after Optional cursor to return results **after** the given item, for pagination.
      * @param before Optional cursor to return results **before** the given item, for pagination.
@@ -121,13 +120,12 @@ internal class RateLimitedBrawlStarsApiClient(
      * @return A [Result] wrapping a [PaginatedList] of [PlayerRanking], or a failure if the request failed.
      */
     override suspend fun getPlayerRanking(
-        brawlerId: Int,
         countryCode: String,
         after: String?,
         before: String?,
         limit: Int?
     ): Result<PaginatedList<PlayerRanking>> =
-        rateLimitedCall { delegate.getPlayerRanking(brawlerId, countryCode, after, before, limit) }
+        rateLimitedCall { delegate.getPlayerRanking(countryCode, after, before, limit) }
 
     /**
      * Retrieves club rankings.
@@ -153,6 +151,6 @@ internal class RateLimitedBrawlStarsApiClient(
      *
      * @return A list of [ScheduledEvent] representing upcoming events.
      */
-    override suspend fun getEventRotation(): Result<List<ScheduledEvent>> =
-        rateLimitedCall { delegate.getEventRotation() }
+    override suspend fun getEventsRotation(): Result<List<ScheduledEvent>> =
+        rateLimitedCall { delegate.getEventsRotation() }
 }

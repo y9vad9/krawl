@@ -77,8 +77,7 @@ public class DefaultBrawlStarsApiClient(
      * @return A [Result] containing the list of [BattleRecord] entries, or `null` if no battles are found.
      */
     override suspend fun getPlayerBattleLog(tag: String): Result<List<BattleRecord>?> =
-        getRequest<ItemsResponse<BattleRecord>?>("players", tag, "battlelog")
-            .map { it?.items }
+        getRequest<PaginatedList<BattleRecord>?>("players", tag, "battlelog")
 
     /**
      * Retrieves a [Club] by its tag.
@@ -96,8 +95,7 @@ public class DefaultBrawlStarsApiClient(
      * @return A [Result] containing the list of [ClubMember] entries, or a failure if the request failed.
      */
     override suspend fun getClubMembers(tag: String): Result<List<ClubMember>?> =
-        getRequest<ItemsResponse<ClubMember>>("clubs", tag, "members")
-            .map { it?.items }
+        getRequest<PaginatedList<ClubMember>>("clubs", tag, "members")
 
     /**
      * Retrieves player rankings for a specific brawler.
@@ -125,7 +123,7 @@ public class DefaultBrawlStarsApiClient(
             if (before != null) append("before", before)
             if (limit != null) append("limit", limit.toString())
         }
-    }.map { it!! }
+    }.mapCatching { it ?: error("`getBrawlerRanking` returned unexpected null") }
 
     /**
      * Retrieves overall player rankings.
@@ -139,7 +137,6 @@ public class DefaultBrawlStarsApiClient(
      * @return A [Result] containing a [PaginatedList] of [PlayerRanking].
      */
     override suspend fun getPlayerRanking(
-        brawlerId: Int,
         countryCode: String,
         after: String?,
         before: String?,
@@ -152,7 +149,7 @@ public class DefaultBrawlStarsApiClient(
             if (before != null) append("before", before)
             if (limit != null) append("limit", limit.toString())
         }
-    }.map { it!! }
+    }.mapCatching { it ?: error("`getPlayerRanking` returned unexpected null") }
 
     /**
      * Retrieves club rankings.
@@ -178,15 +175,17 @@ public class DefaultBrawlStarsApiClient(
             if (before != null) append("before", before)
             if (limit != null) append("limit", limit.toString())
         }
-    }.map { it!! }
+    }.mapCatching { it ?: error("`getClubRanking` returned unexpected null") }
 
     /**
      * Retrieves the scheduled event rotation.
      *
      * @return A [Result] containing a list of [ScheduledEvent] representing upcoming events.
      */
-    override suspend fun getEventRotation(): Result<List<ScheduledEvent>> =
-        getRequest<List<ScheduledEvent>>("events", "rotation").map { it!! }
+    override suspend fun getEventsRotation(): Result<List<ScheduledEvent>> =
+        getRequest<List<ScheduledEvent>>("events", "rotation").mapCatching {
+            it ?: error("`getEventRotation` returned unexpected null")
+        }
 
     private suspend inline fun <reified T> getRequest(
         vararg pathSegments: String,

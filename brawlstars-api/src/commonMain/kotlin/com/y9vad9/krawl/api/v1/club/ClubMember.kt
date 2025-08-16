@@ -1,6 +1,7 @@
 package com.y9vad9.krawl.api.v1.club
 
 import com.y9vad9.krawl.api.v1.player.PlayerIcon
+import kotlinx.serialization.Serializable
 
 /**
  * Represents a member of a club.
@@ -12,6 +13,7 @@ import com.y9vad9.krawl.api.v1.player.PlayerIcon
  * @property role The member's role in the club (e.g., "Leader", "Member").
  * @property nameColor The display color of the member's name.
  */
+@Serializable
 public data class ClubMember(
     public val icon: PlayerIcon,
     public val tag: String,

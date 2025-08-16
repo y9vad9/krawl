@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class PlayerRanking(
     public val trophies: Int,
-    public val club: PlayerRankingClub,
+    public val club: PlayerRankingClub? = null,
     public val icon: PlayerIcon,
     public val tag: String,
     public val name: String,

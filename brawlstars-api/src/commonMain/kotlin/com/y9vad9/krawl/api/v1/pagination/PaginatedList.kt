@@ -15,5 +15,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class PaginatedList<T>(
     private val items: List<T>,
-    public val paging: Pagination,
+    public val paging: Pagination = Pagination(),
 ) : List<T> by items

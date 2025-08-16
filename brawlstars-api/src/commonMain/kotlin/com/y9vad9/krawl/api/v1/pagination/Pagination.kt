@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public data class Pagination(
-    public val cursors: PaginationCursors,
+    public val cursors: PaginationCursors = PaginationCursors(),
 )

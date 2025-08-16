@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
  * @property trophies The total number of trophies earned by the club.
  * @property badgeId The identifier for the club's badge icon.
  * @property rank The club's position in the ranking.
+ * @property memberCount The number of members that joined the club.
  */
 @Serializable
 public data class ClubRanking(
@@ -18,4 +19,5 @@ public data class ClubRanking(
     public val trophies: Int,
     public val badgeId: Int,
     public val rank: Int,
+    public val memberCount: Int,
 )
