@@ -9,8 +9,6 @@ import kotlin.jvm.JvmInline
  * in Supercell's internal systems. It is typically not displayed directly to end users.
  *
  * @property rawInt Raw integer value of the Supercell ID.
- *
- * TODO: Verify the exact purpose and scope of this identifier.
  */
 @JvmInline
 public value class BrawlStarsCSVId(

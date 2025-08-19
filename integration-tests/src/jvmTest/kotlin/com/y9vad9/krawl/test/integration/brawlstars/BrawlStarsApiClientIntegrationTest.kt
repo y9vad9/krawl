@@ -1,4 +1,4 @@
-package com.y9vad9.krawl.api.v1.test.integration
+package com.y9vad9.krawl.test.integration.brawlstars
 
 import com.y9vad9.krawl.ExperimentalKrawlApi
 import com.y9vad9.krawl.api.v1.BrawlStarsApiClient

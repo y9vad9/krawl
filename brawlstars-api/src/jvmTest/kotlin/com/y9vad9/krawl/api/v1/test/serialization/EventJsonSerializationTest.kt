@@ -1,8 +1,6 @@
 package com.y9vad9.krawl.api.v1.test.serialization
 
-import com.y9vad9.krawl.api.v1.battle.BattleRecord
 import com.y9vad9.krawl.api.v1.event.ScheduledEvent
-import com.y9vad9.krawl.api.v1.pagination.PaginatedList
 import com.y9vad9.krawl.api.v1.test.JsonFixturesTest
 import kotlin.test.Test
 import kotlinx.serialization.json.decodeFromStream

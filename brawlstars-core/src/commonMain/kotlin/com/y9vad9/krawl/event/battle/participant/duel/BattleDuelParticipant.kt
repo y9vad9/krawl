@@ -27,29 +27,31 @@ public sealed interface BattleDuelParticipant {
 }
 
 /**
- * Returns `true` if this [com.y9vad9.krawl.event.battle.participant.BattleParticipant] is a [com.y9vad9.krawl.event.battle.participant.BattlePlayer].
+ * Returns `true` if this [com.y9vad9.krawl.event.battle.participant.BattleParticipant]
+ * is a [com.y9vad9.krawl.event.battle.participant.BattleDuelPlayer].
  *
  * Enables smart casting to [com.y9vad9.krawl.event.battle.participant.BattlePlayer] within the calling scope.
  */
 @OptIn(ExperimentalContracts::class)
 public fun BattleDuelParticipant.isPlayer(): Boolean {
     contract {
-        returns(true) implies (this@isPlayer is BattlePlayer)
+        returns(true) implies (this@isPlayer is BattleDuelPlayer)
     }
     return this is BattleDuelPlayer
 }
 
 /**
- * Returns `true` if this [com.y9vad9.krawl.event.battle.participant.BattleParticipant] is a [com.y9vad9.krawl.event.battle.participant.BattleBot].
+ * Returns `true` if this [com.y9vad9.krawl.event.battle.participant.BattleParticipant]
+ * is a [com.y9vad9.krawl.event.battle.participant.duel.BattleDuelBot].
  *
  * Enables smart casting to [com.y9vad9.krawl.event.battle.participant.BattleBot] within the calling scope.
  */
 @OptIn(ExperimentalContracts::class)
 public fun BattleDuelParticipant.isBot(): Boolean {
     contract {
-        returns(true) implies (this@isBot is BattleBot)
+        returns(true) implies (this@isBot is BattleDuelBot)
     }
-    return this is BattleBot
+    return this is BattleDuelBot
 }
 
 

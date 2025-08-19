@@ -11,6 +11,8 @@ import com.y9vad9.krawl.brawler.BrawlerId
  * @property brawlerId Unique identifier of the Brawler the statistics refer to.
  * @property winRate The win rate percentage of the Brawler on this map.
  * @property useRate The usage rate percentage indicating how frequently this Brawler is picked on this map.
+ * @property starRate The star player rate percentage indicating how frequently player with that Brawler is chosen as
+ *                    "star player" on this map.
  */
 public data class BrawlifyMapBrawlerStatistics(
     /**
@@ -33,4 +35,12 @@ public data class BrawlifyMapBrawlerStatistics(
      * Also expressed as a percentage (0.0 to 100.0).
      */
     public val useRate: BrawlifyPercentRate,
+
+    /**
+     * The star player rate percentage of the Brawler on this map.
+     *
+     * This value indicates how frequently this Brawler is chosen as star player in matches on this map.
+     * Also expressed as a percentage (0.0 to 100.0).
+     */
+    public val starRate: BrawlifyPercentRate? = null,
 )

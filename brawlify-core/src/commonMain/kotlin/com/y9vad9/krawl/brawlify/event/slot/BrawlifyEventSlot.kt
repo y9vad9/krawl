@@ -1,6 +1,6 @@
 package com.y9vad9.krawl.brawlify.event.slot
 
-import com.y9vad9.krawl.brawlify.common.BrawlifyHash
+import com.y9vad9.krawl.brawlify.common.BrawlifyPathSegment
 import com.y9vad9.krawl.brawlify.common.BrawlifyUrl
 import com.y9vad9.krawl.event.EventSlotId
 
@@ -13,7 +13,7 @@ import com.y9vad9.krawl.event.EventSlotId
  * @property id Unique identifier for the event slot, must be a positive integer.
  * @property name Displayable name of the event slot, used in UIs and data listings.
  * @property emoji A single emoji representing the event slot for compact or visual display.
- * @property hash Internal game file identifier (usually a hashed string) for matching and lookup.
+ * @property pathSegment An identifier for resources lookup on public CDN (?).
  * @property isListingAlone Whether this slot is typically listed as a standalone category (not grouped with others).
  * @property isHideable Whether this slot can be hidden under certain conditions (e.g. from UI or listings).
  * @property hideForSlot Reference to another event slot that, when active, causes this slot to be hidden.
@@ -23,7 +23,7 @@ public data class BrawlifyEventSlot(
     val id: EventSlotId,
     val name: BrawlifyEventSlotName,
     val emoji: BrawlifyEventSlotEmoji,
-    val hash: BrawlifyHash,
+    val pathSegment: BrawlifyPathSegment,
     val isListingAlone: Boolean,
     val isHideable: Boolean,
     val hideForSlot: EventSlotId,

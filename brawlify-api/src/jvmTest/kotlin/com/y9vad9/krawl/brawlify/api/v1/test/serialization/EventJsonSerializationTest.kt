@@ -1,7 +1,6 @@
 package com.y9vad9.krawl.brawlify.api.v1.test.serialization
 
-import com.y9vad9.krawl.brawlify.api.v1.event.BrawlifyEvent
-import com.y9vad9.krawl.brawlify.api.v1.internal.ItemsResponse
+import com.y9vad9.krawl.brawlify.api.v1.event.BrawlifyEventRotation
 import com.y9vad9.krawl.brawlify.api.v1.test.JsonFixturesTest
 import kotlin.test.Test
 import kotlinx.serialization.json.decodeFromStream
@@ -19,7 +18,7 @@ class EventJsonSerializationTest : JsonFixturesTest() {
         assertDoesNotThrow(
             message = "Couldn't serialize $filePath into ItemsResponse<BrawlifyEvent>"
         ) {
-            json.decodeFromStream<ItemsResponse<BrawlifyEvent>>(stream)
+            json.decodeFromStream<BrawlifyEventRotation>(stream)
         }
     }
 }

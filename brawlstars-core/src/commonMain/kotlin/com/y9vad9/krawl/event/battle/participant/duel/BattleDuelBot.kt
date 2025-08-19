@@ -1,7 +1,6 @@
 package com.y9vad9.krawl.event.battle.participant.duel
 
 import com.y9vad9.krawl.event.battle.brawler.FriendlyBattleBrawler
-import com.y9vad9.krawl.event.battle.participant.BattleParticipant
 import com.y9vad9.krawl.player.PlayerName
 import com.y9vad9.krawl.player.PlayerTag
 

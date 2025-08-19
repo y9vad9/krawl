@@ -2,7 +2,6 @@ package com.y9vad9.krawl.brawlify.event.gamemode
 
 import kotlin.jvm.JvmInline
 
-
 /**
  * Represents a unique identifier for a game mode in Brawlify.
  *

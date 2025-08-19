@@ -1,7 +1,7 @@
 package com.y9vad9.krawl.brawlify.event.map.statistics
 
 import com.y9vad9.krawl.brawler.Brawlers
-import com.y9vad9.krawl.brawlify.common.BrawlifyHash
+import com.y9vad9.krawl.brawlify.common.BrawlifyPathSegment
 import com.y9vad9.krawl.brawlify.common.Count
 
 /**
@@ -12,13 +12,13 @@ import com.y9vad9.krawl.brawlify.common.Count
  *
  * @property name The name or identifier of the team composition.
  * @property brawlers The list of brawlers forming this team composition.
- * @property hash A unique hash representing this specific team setup.
+ * @property pathSegment An path segment that is used to lookup related resources on Brawlify.
  * @property recordedData The statistical data associated with this team composition.
  */
 public data class BrawlifyMapBrawlerTeamStatistics(
     public val name: BrawlifyTeamName,
     public val brawlers: Brawlers,
-    public val hash: BrawlifyHash,
+    public val pathSegment: BrawlifyPathSegment,
     public val recordedData: RecordedData,
 ) {
     /**

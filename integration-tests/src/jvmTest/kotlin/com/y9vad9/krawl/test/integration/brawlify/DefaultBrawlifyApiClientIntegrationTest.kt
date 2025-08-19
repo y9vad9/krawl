@@ -1,13 +1,13 @@
-package com.y9vad9.krawl.brawlify.api.v1.test.integration
+package com.y9vad9.krawl.test.integration.brawlify
 
 import com.y9vad9.krawl.brawlify.api.v1.BrawlifyApiClient
 import io.ktor.client.engine.cio.CIO
-import kotlinx.coroutines.test.runTest
-import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
+import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.json.Json
 
 class DefaultBrawlifyApiClientIntegrationTest {
 

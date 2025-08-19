@@ -29,7 +29,7 @@ public sealed interface BattleDuelPlayer : BattleDuelParticipant
  *
  * @property tag Unique tag identifying the player.
  * @property name In-game name of the player.
- * @property brawler Brawler used by the player during the friendly battle.
+ * @property brawlers Brawlers used by the player during the friendly duel battle.
  */
 public data class FriendlyBattleDuelPlayer(
     override val tag: PlayerTag,
@@ -39,13 +39,13 @@ public data class FriendlyBattleDuelPlayer(
 
 /**
  * Represents a player participating in a
- **[trophy league](https://brawlstars.fandom.com/wiki/Trophies)** battle.
+ * [trophy league](https://brawlstars.fandom.com/wiki/Trophies) battle.
  *
- * Includes player identity and the [brawler] they used in the trophy league match.
+ * Includes player identity and the [brawlers] they used in the trophy league match.
  *
  * @property tag Unique tag identifying the player.
  * @property name In-game name of the player.
- * @property brawler Brawler used by the player during the trophy league battle.
+ * @property brawlers Brawlers used by the player during the trophy league duel battle.
  */
 public data class TrophyLeagueBattleDuelPlayer(
     override val tag: PlayerTag,

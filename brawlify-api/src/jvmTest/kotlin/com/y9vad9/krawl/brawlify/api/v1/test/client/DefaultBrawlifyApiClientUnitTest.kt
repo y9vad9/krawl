@@ -1,7 +1,6 @@
 package com.y9vad9.krawl.brawlify.api.v1.test.client
 
 import com.y9vad9.krawl.brawlify.api.v1.BrawlifyApiClient
-import com.y9vad9.krawl.brawlify.api.v1.DefaultBrawlifyApiClient
 import com.y9vad9.krawl.brawlify.api.v1.test.JsonFixturesTest
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -39,7 +38,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     )
 
     @Test
-     fun `getEvents returns successfully`() = runTest {
+    fun `getEvents returns successfully`() = runTest {
         // GIVEN
         val client = createClientWithFixture(fixturePath = "api/v1/events/multiple.json")
 

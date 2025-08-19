@@ -14,7 +14,6 @@ import kotlinx.serialization.Serializable
  * @property id The unique identifier of the event, if available.
  * @property mode The name of the game mode in which the battle was played, if available.
  * @property map The name of the map where the battle took place, if available.
- * @property modifiers The s
  */
 @Serializable
 public data class BattleEvent(
