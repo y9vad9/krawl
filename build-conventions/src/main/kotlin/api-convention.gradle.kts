@@ -14,10 +14,10 @@ plugins {
 val libs = the<LibrariesForLibs>()
 
 val jvmTarget = kotlin.targets.getByName<KotlinJvmTarget>("jvm")
-val commonMainCompilation = jvmTarget.compilations.getByName("main")
+val jvmTestCompilation = jvmTarget.compilations.getByName("test")
 
 val integrationTest by jvmTarget.compilations.creating {
-    associateWith(commonMainCompilation)
+    associateWith(jvmTestCompilation)
     defaultSourceSet {
         kotlin.srcDir("src/integrationTest/kotlin")
         resources.srcDir("src/integrationTest/resources")

@@ -1,0 +1,21 @@
+{
+  "player": {
+    "28000000": {
+      "id": 28000000,
+      "name": "base1",
+      "name2": "player_icon_00",
+      "imageUrl": "https://cdn.brawlify.com/profile-icons/regular/28000000.png",
+      "brawler": null,
+      "requiredTotalTrophies": 0,
+      "sortOrder": 0,
+      "isReward": false,
+      "isAvailableForOffers": false
+    }
+  },
+  "club": {
+    "8000000": {
+      "id": 8000000,
+      "imageUrl": "https://cdn.brawlify.com/club-badges/regular/8000000.png"
+    }
+  }
+}

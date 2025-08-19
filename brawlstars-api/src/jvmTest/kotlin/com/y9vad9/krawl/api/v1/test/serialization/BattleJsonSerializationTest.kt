@@ -10,7 +10,7 @@ import kotlinx.serialization.json.decodeFromStream
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 
-class BattleJsonSerializationTestJson : JsonFixturesTest() {
+class BattleJsonSerializationTest : JsonFixturesTest() {
     @Test
     fun `check no errors when serializing test fixtures battlelog`() {
         // GIVEN

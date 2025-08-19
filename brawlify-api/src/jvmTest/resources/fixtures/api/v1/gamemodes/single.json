@@ -1,0 +1,22 @@
+{
+  "id": 16,
+  "scId": 48000018,
+  "name": "Super City Rampage",
+  "hash": "Super-City-Rampage",
+  "scHash": "superCityRampage",
+  "disabled": true,
+  "color": "#ff6847",
+  "bgColor": "#dc2423",
+  "version": 1,
+  "title": "Three players vs the MEGA MONSTER",
+  "tutorial": "Can you beat the Mega Monster and save the City? Join forces with two teammates to take down the Mega Monster. You can get back in the fight as long as at least one of your teammates is standing. If everyone falls OR all buildings get destroyed, the match is over!  Rampages increase in Challenge, from Normal all the way to Insane, every time you manage to beat the Mega Monster.",
+  "description": "Can you beat the Mega Monster and save the City? Join forces with two teammates to take down the Mega Monster. You can get back in the fight as long as at least one of your teammates is standing. If everyone falls OR all buildings get destroyed, the match is over!  Rampages increase in Challenge, from Normal all the way to Insane, every time you manage to beat the Mega Monster.",
+  "shortDescription": "Defeat the Boss",
+  "sort1": 15,
+  "sort2": 15,
+  "link": "https://brawlify.com/gamemodes/detail/Super-City-Rampage",
+  "imageUrl": "https://cdn.brawlify.com/game-modes/regular/48000018.png",
+  "imageUrl2": "https://cdn-misc.brawlify.com/gamemode/header/Super-City-Rampage.png",
+  "lastActive": null,
+  "TID": "TID_GAME_MODE_18"
+}
