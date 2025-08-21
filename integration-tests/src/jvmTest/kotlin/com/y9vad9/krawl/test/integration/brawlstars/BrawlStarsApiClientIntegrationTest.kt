@@ -36,7 +36,10 @@ class BrawlStarsApiClientIntegrationTest {
     @Test
     fun `should return player for valid tag`() = runTest {
         // Given
-        val validTag = "#2GRVVCYUQG" // known sample tag, must exist in RoyaleAPI test dataset
+        val validTag = client.getPlayerRanking()
+            .getOrThrow()
+            .first()
+            .tag // known sample tag, must exist in RoyaleAPI test dataset
 
         // When
         val result = client.getPlayer(tag = validTag)
