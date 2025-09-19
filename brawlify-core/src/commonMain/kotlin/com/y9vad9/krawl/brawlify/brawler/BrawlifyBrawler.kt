@@ -2,11 +2,11 @@ package com.y9vad9.krawl.brawlify.brawler
 
 import com.y9vad9.krawl.brawler.BrawlerId
 import com.y9vad9.krawl.brawler.BrawlerName
-import com.y9vad9.krawl.brawlify.brawler.classification.BrawlifyBrawlerClass
-import com.y9vad9.krawl.brawlify.brawler.gadget.BrawlifyBrawlerGadget
-import com.y9vad9.krawl.brawlify.brawler.rarity.BrawlifyBrawlerRarity
-import com.y9vad9.krawl.brawlify.brawler.starpower.BrawlifyBrawlerStarPower
-import com.y9vad9.krawl.brawlify.common.BrawlifyDescription
+import com.y9vad9.krawl.brawlify.api.v1.brawler.RawBrawlifyBrawler as RawBrawlifyBrawler
+import com.y9vad9.krawl.brawlify.BrawlifyDescription
+import com.y9vad9.krawl.brawlify.BrawlifyHtmlDescription
+import com.y9vad9.krawl.brawlify.BrawlifyRegularDescription
+import com.y9vad9.krawl.brawlify.BrawlifyUrl
 
 /**
  * Represents a Brawler entity in the Brawlify data model.
@@ -29,9 +29,43 @@ public data class BrawlifyBrawler(
     public val name: BrawlerName,
     public val isReleased: Boolean,
     public val description: BrawlifyDescription,
-    public val image: BrawlerImage,
+    public val image: BrawlifyBrawlerImage,
     public val classification: BrawlifyBrawlerClass,
     public val rarity: BrawlifyBrawlerRarity,
     public val gadgets: List<BrawlifyBrawlerGadget>,
     public val starPowers: List<BrawlifyBrawlerStarPower>,
 )
+
+/**
+ * Converts this [RawBrawlifyBrawler] into its validated and typed counterpart [BrawlifyBrawler].
+ *
+ * @return the corresponding [BrawlifyBrawler] instance
+ * @throws IllegalArgumentException if any validation fails or contract is broken
+ */
+public fun RawBrawlifyBrawler.toTypedOrThrow(): BrawlifyBrawler =
+    BrawlifyBrawler(
+        id = BrawlerId.createOrThrow(id),
+        name = BrawlerName(name),
+        isReleased = released,
+        description = BrawlifyDescription(
+            regular = BrawlifyRegularDescription(description),
+            html = BrawlifyHtmlDescription(descriptionHtml),
+        ),
+        image = BrawlifyBrawlerImage(
+            border = BrawlifyUrl.createOrThrow(imageUrl),
+            borderless = BrawlifyUrl.createOrThrow(borderlessImageUrl),
+            emoji = BrawlifyUrl.createOrThrow(fankitImageUrl),
+        ),
+        classification = classInfo.toTypedOrThrow(),
+        rarity = rarity.toTypedOrThrow(),
+        gadgets = gadgets.map { it.toTypedOrThrow() },
+        starPowers = starPowers.map { it.toTypedOrThrow() },
+    )
+
+/**
+ * Attempts to convert this [RawBrawlifyBrawler] into its typed counterpart [BrawlifyBrawler].
+ *
+ * @return the validated [BrawlifyBrawler], or `null` if conversion fails
+ */
+public fun RawBrawlifyBrawler.toTypedOrNull(): BrawlifyBrawler? =
+    try { toTypedOrThrow() } catch (_: Throwable) { null }

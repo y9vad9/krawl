@@ -1,8 +1,8 @@
 package com.y9vad9.krawl.brawlify.gamedata
 
 import com.y9vad9.krawl.brawlify.brawler.BrawlifyBrawler
-import com.y9vad9.krawl.brawlify.common.BrawlStarsLocale
-import com.y9vad9.krawl.brawlify.common.BrawlStarsTID
+import com.y9vad9.krawl.brawlify.BrawlStarsLocale
+import com.y9vad9.krawl.brawlify.BrawlStarsTID
 import com.y9vad9.krawl.brawlify.event.map.BrawlifyMap
 import com.y9vad9.krawl.event.battle.brawler.BattleBrawler
 

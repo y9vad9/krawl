@@ -11,7 +11,9 @@ import kotlin.jvm.JvmInline
  * @property rawString The raw hexadecimal string representing the color, possibly with a leading `#`.
  */
 @JvmInline
-public value class HexColor private constructor(public val rawString: String) {
+public value class HexColor private constructor(
+    public val rawString: String,
+) {
     public companion object {
         /**
          * Regex used to validate a valid color string (with optional `#`).

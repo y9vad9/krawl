@@ -1,6 +1,6 @@
 package com.y9vad9.krawl.brawlify.event.map
 
-import com.y9vad9.krawl.brawlify.common.BrawlifyUrl
+import com.y9vad9.krawl.brawlify.BrawlifyUrl
 
 /**
  * Represents external Brawlify links related to a specific Brawl Stars map.

@@ -21,7 +21,7 @@ import kotlin.jvm.JvmInline
 @JvmInline
 public value class PlayerName private constructor(
     /** The validated player name string, as accepted by the Brawl Stars API. */
-    public val string: String,
+    public val rawString: String,
 ) {
     /** Constants with constraints and validation */
     public companion object {
@@ -67,5 +67,5 @@ public value class PlayerName private constructor(
     /**
      * Returns the raw string representation of this player name.
      */
-    override fun toString(): String = string
+    override fun toString(): String = rawString
 }

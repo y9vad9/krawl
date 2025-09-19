@@ -19,7 +19,7 @@ import kotlin.jvm.JvmInline
 @JvmInline
 public value class GadgetId private constructor(
     /** The underlying integer value of the gadget ID. */
-    public val value: Int,
+    public val rawInt: Int,
 ) : Comparable<GadgetId> {
     /** Constants with constraints and validation */
     public companion object {
@@ -27,7 +27,7 @@ public value class GadgetId private constructor(
         public const val MIN_VALUE: Int = 23_000_000
 
         /** Maximum valid value for a gadget ID. */
-        public const val MAX_VALUE: Int = 23_001_000
+        public const val MAX_VALUE: Int = 23_010_000
 
         /** Valid range of gadget ID values. */
         public val VALUE_RANGE: IntRange = MIN_VALUE..MAX_VALUE
@@ -71,5 +71,5 @@ public value class GadgetId private constructor(
      * @return A negative integer, zero, or a positive integer as this ID
      * is less than, equal to, or greater than the other ID.
      */
-    override fun compareTo(other: GadgetId): Int = value.compareTo(other.value)
+    override fun compareTo(other: GadgetId): Int = rawInt.compareTo(other.rawInt)
 }

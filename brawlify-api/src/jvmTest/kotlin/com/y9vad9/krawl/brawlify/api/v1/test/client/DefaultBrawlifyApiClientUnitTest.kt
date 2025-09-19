@@ -1,7 +1,6 @@
 package com.y9vad9.krawl.brawlify.api.v1.test.client
 
-import com.y9vad9.krawl.brawlify.api.v1.BrawlifyApiClient
-import com.y9vad9.krawl.brawlify.api.v1.test.JsonFixturesTest
+import com.y9vad9.krawl.brawlify.api.v1.RawBrawlifyApiClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.http.HttpHeaders
@@ -15,8 +14,8 @@ import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.assertDoesNotThrow
 
-class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
-    private fun createClientWithFixture(fixturePath: String) = BrawlifyApiClient.create(
+class DefaultBrawlifyApiClientUnitTest : com.y9vad9.krawl.test.WithJsonFixturesTest() {
+    private fun createClientWithFixture(fixturePath: String) = RawBrawlifyApiClient.create(
         engine = MockEngine {
             respond(
                 content = loadFixtureAsStream(fixturePath).toByteReadChannel(),
@@ -26,7 +25,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
         json = json,
     )
 
-    private fun createClientWithError(status: HttpStatusCode) = BrawlifyApiClient.create(
+    private fun createClientWithError(status: HttpStatusCode) = RawBrawlifyApiClient.create(
         engine = MockEngine {
             respond(
                 content = """{ "reason": "error" }""",
@@ -40,7 +39,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getEvents returns successfully`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/events/multiple.json")
+        val client = createClientWithFixture(fixturePath = "v1/events/multiple.json")
 
         // WHEN
         val result = client.getEvents()
@@ -65,7 +64,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getBrawlers returns multiple items`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/brawlers/multiple.json")
+        val client = createClientWithFixture(fixturePath = "v1/brawlers/multiple.json")
 
         // WHEN
         val result = client.getBrawlers()
@@ -93,7 +92,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getBrawler returns single item`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/brawlers/single.json")
+        val client = createClientWithFixture(fixturePath = "v1/brawlers/single.json")
 
         // WHEN
         val result = client.getBrawler(16_000_000)
@@ -118,7 +117,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getMaps returns multiple items`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/maps/multiple.json")
+        val client = createClientWithFixture(fixturePath = "v1/maps/multiple.json")
 
         // WHEN
         val result = client.getMaps()
@@ -146,7 +145,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getMap returns single item`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/maps/single.json")
+        val client = createClientWithFixture(fixturePath = "v1/maps/single.json")
 
         // WHEN
         val result = client.getMap(15_000_013)
@@ -171,7 +170,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getGameModes returns multiple items`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/gamemodes/multiple.json")
+        val client = createClientWithFixture(fixturePath = "v1/gamemodes/multiple.json")
 
         // WHEN
         val result = client.getGameModes()
@@ -199,7 +198,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getGameMode returns single item`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/gamemodes/single.json")
+        val client = createClientWithFixture(fixturePath = "v1/gamemodes/single.json")
 
         // WHEN
         val result = client.getGameMode(1)
@@ -221,7 +220,7 @@ class DefaultBrawlifyApiClientUnitTest : JsonFixturesTest() {
     @Test
     fun `getIcons returns multiple items`() = runTest {
         // GIVEN
-        val client = createClientWithFixture(fixturePath = "api/v1/icons/multiple.json")
+        val client = createClientWithFixture(fixturePath = "v1/icons/multiple.json")
 
         // WHEN
         val result = client.getIcons()

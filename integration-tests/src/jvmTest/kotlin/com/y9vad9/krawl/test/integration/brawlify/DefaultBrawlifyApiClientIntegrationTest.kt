@@ -1,6 +1,6 @@
 package com.y9vad9.krawl.test.integration.brawlify
 
-import com.y9vad9.krawl.brawlify.api.v1.BrawlifyApiClient
+import com.y9vad9.krawl.brawlify.api.v1.RawBrawlifyApiClient
 import io.ktor.client.engine.cio.CIO
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -11,7 +11,7 @@ import kotlinx.serialization.json.Json
 
 class DefaultBrawlifyApiClientIntegrationTest {
 
-    private val client: BrawlifyApiClient = BrawlifyApiClient.create(
+    private val client: RawBrawlifyApiClient = RawBrawlifyApiClient.create(
         engine = CIO.create(),
         json = Json {
             ignoreUnknownKeys = false
@@ -130,6 +130,22 @@ class DefaultBrawlifyApiClientIntegrationTest {
     fun `should return list of all game modes`() = runTest {
         // WHEN
         val result = client.getGameModes()
+
+        result.getOrThrow().sortedBy { it.scId }.forEach { gameMode ->
+            val constantName = gameMode.name.replace(" ", "_").replace("&", "_AND_").uppercase()
+            var i = 0
+            val isCheckName = gameMode.name.split(" ").joinToString("") {
+                i++
+                val capitalized = it.replaceFirstChar { it.uppercase() }
+                if (i > 1) capitalized else "is$capitalized"
+            }
+
+            println(buildString {
+                appendLine("/** Returns `true` if the game mode is [BrawlifyGameModeId.$constantName] */".trimIndent())
+                appendLine("public val BrawlifyGameModeId.$isCheckName: Boolean")
+                appendLine("    get() = this == BrawlifyGameModeId.$constantName")
+            })
+        }
 
         // THEN
         assertTrue(

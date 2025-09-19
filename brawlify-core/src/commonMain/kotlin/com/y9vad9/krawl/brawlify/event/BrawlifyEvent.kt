@@ -1,7 +1,8 @@
 package com.y9vad9.krawl.brawlify.event
 
+import com.y9vad9.krawl.brawlify.api.v1.event.RawBrawlifyEvent
 import com.y9vad9.krawl.brawlify.event.map.BrawlifyMap
-import com.y9vad9.krawl.brawlify.event.slot.BrawlifyEventSlot
+import com.y9vad9.krawl.brawlify.event.map.toTypedOrThrow
 import kotlin.time.Instant
 
 /**
@@ -28,3 +29,25 @@ public data class BrawlifyEvent(
      */
     public val endTime: Instant get() = timeline.endInclusive
 }
+
+/**
+ * Converts this [RawBrawlifyEvent] into its typed and validated counterpart [BrawlifyEvent].
+ *
+ * @return the corresponding [BrawlifyEvent] instance
+ * @throws IllegalArgumentException if any validation fails
+ */
+public fun RawBrawlifyEvent.toTypedOrThrow(): BrawlifyEvent =
+    BrawlifyEvent(
+        slot = slot.toTypedOrThrow(),
+        timeline = Instant.parse(startTime)..Instant.parse(endTime),
+        map = map.toTypedOrThrow(),
+        isPredicted = predicted,
+    )
+
+/**
+ * Attempts to convert this [RawBrawlifyEvent] into its typed counterpart [BrawlifyEvent].
+ *
+ * @return the validated [BrawlifyEvent], or `null` if conversion fails
+ */
+public fun RawBrawlifyEvent.toTypedOrNull(): BrawlifyEvent? =
+    try { toTypedOrThrow() } catch (_: Throwable) { null }

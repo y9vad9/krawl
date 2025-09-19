@@ -1,7 +1,6 @@
 import kotlinx.kover.gradle.plugin.dsl.AggregationType
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.gradle.accessors.dm.LibrariesForLibs
-import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 plugins {
     id("multiplatform-library-convention")
@@ -12,35 +11,8 @@ plugins {
 
 val libs = the<LibrariesForLibs>()
 
-val jvmTarget = kotlin.targets.getByName<KotlinJvmTarget>("jvm")
-val commonMainCompilation = jvmTarget.compilations.getByName("main")
-
-val integrationTest by jvmTarget.compilations.creating {
-    associateWith(commonMainCompilation)
-    defaultSourceSet {
-        kotlin.srcDir("src/integrationTest/kotlin")
-        resources.srcDir("src/integrationTest/resources")
-
-        dependencies {
-            implementation(libs.kotlin.test.junit)
-            implementation(libs.junit.jupiter.engine)
-
-            implementation(libs.kotlinx.coroutines.test)
-
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.client.contentNegotiation)
-            implementation(libs.ktor.client.cio)
-            implementation(libs.kotlinx.serialization.json)
-        }
-    }
-}
-
-tasks.register<Test>("integrationTest") {
-    dependsOn(integrationTest.compileTaskProvider)
-    testClassesDirs = integrationTest.output.classesDirs
-    classpath = integrationTest.output.classesDirs + integrationTest.runtimeDependencyFiles
-    useJUnit()
+dependencies {
+    commonTestImplementation(libs.kotlin.test)
 }
 
 kover.reports.verify.rule {

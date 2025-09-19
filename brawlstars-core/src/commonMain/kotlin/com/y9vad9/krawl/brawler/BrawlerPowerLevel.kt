@@ -14,7 +14,7 @@ import kotlin.jvm.JvmInline
  * constants for convenient bounds.
  */
 @JvmInline
-public value class BrawlerPowerLevel(
+public value class BrawlerPowerLevel private constructor(
     /**
      * The underlying integer representation of the brawler's power level.
      *
@@ -31,6 +31,11 @@ public value class BrawlerPowerLevel(
      * is less than, equal to, or greater than the other level.
      */
     override fun compareTo(other: BrawlerPowerLevel): Int = int.compareTo(other.int)
+
+    /**
+     * Returns underlying [int] string representation.
+     */
+    override fun toString(): String = int.toString()
 
     /** Constants with constraints and validation */
     public companion object {

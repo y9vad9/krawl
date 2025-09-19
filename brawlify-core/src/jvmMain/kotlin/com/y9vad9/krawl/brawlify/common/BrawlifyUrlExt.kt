@@ -1,10 +1,11 @@
 package com.y9vad9.krawl.brawlify.common
 
+import com.y9vad9.krawl.brawlify.BrawlifyUrl
 import java.net.URI
 import java.net.URL
 
 /**
- * Converts this [BrawlifyUrl] into a [URI] instance using the underlying [BrawlifyUrl.rawString].
+ * Converts this [com.y9vad9.krawl.brawlify.BrawlifyUrl] into a [URI] instance using the underlying [com.y9vad9.krawl.brawlify.BrawlifyUrl.rawString].
  *
  * This is useful when working with Java APIs that require [URI], or for validation purposes.
  *

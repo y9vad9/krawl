@@ -13,11 +13,11 @@ import kotlin.jvm.JvmInline
  * valid event ID ranges. It can be constructed using [create], [createOrThrow], or [createOrNull],
  * and compared using standard operators.
  *
- * @property int The raw integer ID as returned by the Brawl Stars API.
+ * @property rawInt The raw integer ID as returned by the Brawl Stars API.
  */
 @JvmInline
-public value class EventId(public val int: Int) : Comparable<EventId> {
-    override fun compareTo(other: EventId): Int = int.compareTo(other.int)
+public value class EventId(public val rawInt: Int) : Comparable<EventId> {
+    override fun compareTo(other: EventId): Int = rawInt.compareTo(other.rawInt)
 
     public companion object {
         /**

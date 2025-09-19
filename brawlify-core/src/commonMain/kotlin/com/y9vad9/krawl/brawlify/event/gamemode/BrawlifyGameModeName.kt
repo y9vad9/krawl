@@ -1,6 +1,6 @@
 package com.y9vad9.krawl.brawlify.event.gamemode
 
-import com.y9vad9.krawl.brawlify.event.map.environment.BrawlifyMapEnvironmentName
+import com.y9vad9.krawl.brawlify.event.map.BrawlifyMapEnvironmentName
 import kotlin.jvm.JvmInline
 
 /**

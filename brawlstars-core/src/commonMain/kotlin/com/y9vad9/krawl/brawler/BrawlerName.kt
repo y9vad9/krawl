@@ -13,16 +13,16 @@ import kotlin.jvm.JvmInline
 @JvmInline
 public value class BrawlerName(
     /** The raw string value of the brawler's name. */
-    public val string: String
+    public val rawString: String
 ) : Comparable<BrawlerName> {
 
     /**
-     * Compares this [BrawlerName] with [other] based on lexicographic order of the underlying [string].
+     * Compares this [BrawlerName] with [other] based on lexicographic order of the underlying [rawString].
      */
-    override fun compareTo(other: BrawlerName): Int = string.compareTo(other.string)
+    override fun compareTo(other: BrawlerName): Int = rawString.compareTo(other.rawString)
 
     /**
      * Returns the string representation of the brawler name.
      */
-    override fun toString(): String = string
+    override fun toString(): String = rawString
 }

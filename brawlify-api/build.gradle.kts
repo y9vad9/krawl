@@ -7,16 +7,20 @@ dependencies {
     commonMainApi(projects.common)
 
     commonMainImplementation(libs.kotlinx.coroutines)
-    commonMainImplementation(libs.ktor.client.core)
-    commonMainImplementation(libs.ktor.serialization.kotlinx.json)
+    commonMainApi(libs.ktor.client.core)
+    commonMainApi(libs.ktor.serialization.kotlinx.json)
     commonMainImplementation(libs.ktor.client.contentNegotiation)
     commonMainImplementation(libs.kotlinx.serialization.json)
+
+    jvmTestImplementation(projects.testFixtures)
 }
 
 kotlin {
-    sourceSets.commonTest {
-        compilerOptions {
-            optIn.add("kotlinx.serialization.ExperimentalSerializationApi")
+    sourceSets {
+        commonTest {
+            compilerOptions {
+                optIn.add("kotlinx.serialization.ExperimentalSerializationApi")
+            }
         }
     }
 }

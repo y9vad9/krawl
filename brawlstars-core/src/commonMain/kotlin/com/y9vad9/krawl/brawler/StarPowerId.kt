@@ -11,17 +11,17 @@ import kotlin.jvm.JvmInline
 /**
  * Represents a unique identifier for a Star Power in Brawl Stars.
  *
- * This value class wraps an integer [value] that corresponds to a specific Star Power
+ * This value class wraps an integer [rawInt] that corresponds to a specific Star Power
  * and provides type safety across the domain model. Valid Star Power IDs fall within
  * the range defined by [MIN_VALUE] to [MAX_VALUE].
  *
  * Use [create], [createOrThrow], or [createOrNull] to safely construct an instance.
  *
- * @property value The underlying integer representation of the Star Power ID.
+ * @property rawInt The underlying integer representation of the Star Power ID.
  */
 @JvmInline
 public value class StarPowerId private constructor(
-    public val value: Int,
+    public val rawInt: Int,
 ) : Comparable<StarPowerId> {
 
     /**
@@ -78,10 +78,10 @@ public value class StarPowerId private constructor(
     }
 
     /**
-     * Compares this ID with another [StarPowerId] by their numeric [value].
+     * Compares this ID with another [StarPowerId] by their numeric [rawInt].
      *
      * @param other The ID to compare against.
      * @return Result of comparing the two integer values.
      */
-    override fun compareTo(other: StarPowerId): Int = value.compareTo(other.value)
+    override fun compareTo(other: StarPowerId): Int = rawInt.compareTo(other.rawInt)
 }
