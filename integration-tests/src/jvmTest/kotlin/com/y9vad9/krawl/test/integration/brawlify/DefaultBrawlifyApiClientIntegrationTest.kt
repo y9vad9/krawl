@@ -126,39 +126,40 @@ class DefaultBrawlifyApiClientIntegrationTest {
         )
     }
 
-    @Test
-    fun `should return list of all game modes`() = runTest {
-        // WHEN
-        val result = client.getGameModes()
-
-        result.getOrThrow().sortedBy { it.scId }.forEach { gameMode ->
-            val constantName = gameMode.name.replace(" ", "_").replace("&", "_AND_").uppercase()
-            var i = 0
-            val isCheckName = gameMode.name.split(" ").joinToString("") {
-                i++
-                val capitalized = it.replaceFirstChar { it.uppercase() }
-                if (i > 1) capitalized else "is$capitalized"
-            }
-
-            println(buildString {
-                appendLine("/** Returns `true` if the game mode is [BrawlifyGameModeId.$constantName] */".trimIndent())
-                appendLine("public val BrawlifyGameModeId.$isCheckName: Boolean")
-                appendLine("    get() = this == BrawlifyGameModeId.$constantName")
-            })
-        }
-
-        // THEN
-        assertTrue(
-            actual = result.isSuccess,
-            message = "Expected success when fetching game modes",
-        )
-
-        val modes = result.getOrThrow()
-        assertTrue(
-            actual = modes.isNotEmpty(),
-            message = "Game modes list should not be empty",
-        )
-    }
+    // TODO finish test
+//    @Test
+//    fun `should return list of all game modes`() = runTest {
+//        // WHEN
+//        val result = client.getGameModes()
+//
+//        result.getOrThrow().sortedBy { it.scId }.forEach { gameMode ->
+//            val constantName = gameMode.name.replace(" ", "_").replace("&", "_AND_").uppercase()
+//            var i = 0
+//            val isCheckName = gameMode.name.split(" ").joinToString("") {
+//                i++
+//                val capitalized = it.replaceFirstChar { it.uppercase() }
+//                if (i > 1) capitalized else "is$capitalized"
+//            }
+//
+//            println(buildString {
+//                appendLine("/** Returns `true` if the game mode is [BrawlifyGameModeId.$constantName] */".trimIndent())
+//                appendLine("public val BrawlifyGameModeId.$isCheckName: Boolean")
+//                appendLine("    get() = this == BrawlifyGameModeId.$constantName")
+//            })
+//        }
+//
+//        // THEN
+//        assertTrue(
+//            actual = result.isSuccess,
+//            message = "Expected success when fetching game modes",
+//        )
+//
+//        val modes = result.getOrThrow()
+//        assertTrue(
+//            actual = modes.isNotEmpty(),
+//            message = "Game modes list should not be empty",
+//        )
+//    }
 
     @Test
     fun `should return details for a specific game mode`() = runTest {

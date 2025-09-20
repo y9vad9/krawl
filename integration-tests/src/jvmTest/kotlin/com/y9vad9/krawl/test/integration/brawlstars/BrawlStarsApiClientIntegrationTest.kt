@@ -109,13 +109,16 @@ class BrawlStarsApiClientIntegrationTest {
     @Test
     fun `should retrieve club members`() = runTest {
         // Given
-        val clubTag = "#80GP0LRL0"
+        val clubTag = client.getClubRanking().getOrThrow().first().tag
 
         // When
         val result = client.getClubMembers(tag = clubTag)
 
         // Then
-        assertTrue(result.isSuccess)
+        assertTrue(
+            actual = result.isSuccess,
+            message = "Failed with error: ${result.exceptionOrNull()}",
+        )
         val members: List<ClubMember>? = result.getOrThrow()
         assertNotNull(members)
         assertTrue(members.isNotEmpty(), "Club should have members")

@@ -1,6 +1,8 @@
 package com.y9vad9.krawl.brawlify.test.event
 
 import com.y9vad9.krawl.brawlify.api.v1.event.statistics.RawBrawlifyMapBrawlerStatistics
+import com.y9vad9.krawl.brawlify.event.map.toTypedOrNull
+import com.y9vad9.krawl.brawlify.event.map.toTypedOrThrow
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
