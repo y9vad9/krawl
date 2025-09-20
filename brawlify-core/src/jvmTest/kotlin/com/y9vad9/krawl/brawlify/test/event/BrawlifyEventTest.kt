@@ -21,7 +21,7 @@ class BrawlifyEventTest {
 
     private fun createRawEventSlot(): RawBrawlifyEventSlot =
         RawBrawlifyEventSlot(
-            id = 15000000,
+            id = 15_000_000,
             name = "Bounty",
             emoji = "⭐",
             hash = "bounty",
@@ -33,7 +33,7 @@ class BrawlifyEventTest {
 
     private fun createRawMap(): RawBrawlifyMap =
         RawBrawlifyMap(
-            id = 15000123,
+            id = 15_000_123,
             new = false,
             disabled = false,
             name = "Gem Grab Map",
@@ -147,18 +147,18 @@ class BrawlifyEventTest {
     fun `toTypedOrThrow handles optional fields correctly`() {
         // GIVEN
         val rawEventSlot = RawBrawlifyEventSlot(
-            id = 15000001,
+            id = 15_000_001,
             name = "Showdown",
             emoji = "🔥",
             hash = "showdown",
             listAlone = true,
             hideable = true,
-            hideForSlot = 15000000, // nullable with a value
+            hideForSlot = 15_000_000, // nullable with a value
             background = "https://cdn.brawlify.com/eventslot/bg/showdown.png" // nullable with a value
         )
 
         val rawMap = RawBrawlifyMap(
-            id = 15000234,
+            id = 15_000_234,
             new = true,
             disabled = false,
             name = "Heist Map",
@@ -178,7 +178,7 @@ class BrawlifyEventTest {
             ),
             gameMode = RawBrawlifyGameModeView(
                 id = null,
-                scId = 48000001,
+                scId = 48_000_001,
                 name = "Heist",
                 hash = "heist",
                 version = 2,
@@ -208,7 +208,7 @@ class BrawlifyEventTest {
 
         // THEN
         assertNotNull(event.slot.hideForSlot)
-        assertEquals(15000000, event.slot.hideForSlot?.rawInt)
+        assertEquals(expected = 15_000_000, actual = event.slot.hideForSlot?.rawInt)
         assertNotNull(event.slot.backgroundUrl)
         assertEquals("https://cdn.brawlify.com/eventslot/bg/showdown.png", event.slot.backgroundUrl!!.rawString)
         assertNotNull(event.map.conceptOwner)
@@ -285,10 +285,25 @@ class BrawlifyEventTest {
         val mode = event.map.gamemode
 
         // THEN
-        assertEquals("Desert", env.name.rawString)
-        assertEquals("desert", env.pathSegment.rawString)
-        assertEquals("Gem Grab", mode.name.rawString)
-        assertEquals("#FF0000", mode.color.primary.rawString)
-        assertEquals("#00FF00", mode.color.background.rawString)
+        assertEquals(
+            expected = "Desert",
+            actual = env.name.rawString,
+        )
+        assertEquals(
+            expected = "desert",
+            actual = env.pathSegment.rawString,
+        )
+        assertEquals(
+            expected = "Gem Grab",
+            actual = mode.name.rawString,
+        )
+        assertEquals(
+            expected = "#FF0000",
+            actual = mode.color.primary.rawString,
+        )
+        assertEquals(
+            expected = "#00FF00",
+            actual = mode.color.background.rawString,
+        )
     }
 }

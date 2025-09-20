@@ -11,7 +11,6 @@ import com.y9vad9.krawl.brawlify.brawler.isTank
 import com.y9vad9.krawl.brawlify.brawler.isUnknown
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class BrawlifyBrawlerClassIdTest {

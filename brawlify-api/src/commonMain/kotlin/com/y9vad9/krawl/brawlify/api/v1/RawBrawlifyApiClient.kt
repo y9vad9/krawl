@@ -104,8 +104,8 @@ public interface RawBrawlifyApiClient {
      *
      * See [Brawlify Game Modes API](https://brawlapi.com/#/endpoints/gamemodes) for details.
      *
-     * @param id The unique ID of the game mode. It can be either [RawBrawlifyGameMode.id] or [RawBrawlifyGameMode.scId].
-     *           Prefer `scId` over `id` – `id` can easily be absent.
+     * @param id The unique ID of the game mode. It can be either [RawBrawlifyGameMode.id] or
+     * [RawBrawlifyGameMode.scId]. Prefer `scId` over `id` – `id` can easily be absent.
      * @return A [Result] containing a [RawBrawlifyGameMode] object.
      */
     public suspend fun getGameMode(id: Int): Result<RawBrawlifyGameMode>

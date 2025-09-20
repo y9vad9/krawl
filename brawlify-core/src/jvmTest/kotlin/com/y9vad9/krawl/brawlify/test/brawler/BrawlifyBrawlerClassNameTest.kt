@@ -4,7 +4,6 @@ import com.y9vad9.krawl.brawlify.brawler.BrawlifyBrawlerClassName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
-import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 class BrawlifyBrawlerClassNameTest {

@@ -3,7 +3,6 @@ package com.y9vad9.krawl.brawlify.api.v1.event
 import com.y9vad9.krawl.brawlify.api.v1.event.statistics.RawBrawlifyMapBrawlerStatistics
 import com.y9vad9.krawl.brawlify.api.v1.event.statistics.RawBrawlifyMapTeamStatistics
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonObject
 
 /**
  * Represents a playable map in Brawl Stars.

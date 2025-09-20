@@ -12,7 +12,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.assertFalse
-import kotlin.test.assertContains
 
 class BrawlifyBrawlerRarityIdTest {
 
